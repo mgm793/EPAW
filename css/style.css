@@ -67,12 +67,14 @@ header img{
 	margin: 10px;
 	width: calc(25% - 20px);
 	float: left;
+	height: calc(100vh - 70px);
 }
 
 .bodyRight{
 	margin: 10px;
 	width: calc(25% - 20px);
 	float: right;
+	height: calc(100vh - 70px);
 }
 
 /* INPUT */
@@ -101,7 +103,7 @@ header img{
 	outline: none;
 	width: 90%;
 	height: calc(40px - 20px);
-	-webkit-transition: height 1s;
+	-webkit-transition: height 0.5s;
 	transition: height 1s;
 }
 
@@ -155,6 +157,7 @@ header img{
 }
 
 .options{
+	color: grey;
 	margin-top: 20px;
 }
 
