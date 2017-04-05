@@ -19,6 +19,7 @@ body{
 
 .app{
 	width: 100vw;
+	font-family: Arial,sans-serif;
 }
 
 /* HEADER */
@@ -105,11 +106,27 @@ header img{
 	height: calc(40px - 20px);
 	-webkit-transition: height 0.5s;
 	transition: height 1s;
+	font-family: Arial,sans-serif;
 }
 
 .input textarea:focus{
 	border-color: #B2DFDB;
 	height: 60px;
+}
+.input textarea::-webkit-input-placeholder {
+	font-family: Arial,sans-serif;
+}
+
+.input textarea:-ms-input-placeholder {
+	font-family: Arial,sans-serif;
+}
+
+.input textarea:-moz-placeholder {
+	font-family: Arial,sans-serif;
+}
+
+.input textarea::-moz-placeholder {
+	font-family: Arial,sans-serif;
 }
 
 /* TWEETS */
@@ -140,7 +157,6 @@ header img{
 
 .tweet .header, .tweet .bodytweet, .tweet .options{
 	font-size: medium;
-	font-family: Arial,sans-serif;
 	float: right;
 	width: calc(100% - 60px);
 }
