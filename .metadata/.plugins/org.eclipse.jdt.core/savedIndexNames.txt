@@ -1,0 +1,23 @@
+INDEX VERSION 1.130+/Users/mgm793/Desktop/Programacio/uni/EPAW/.metadata/.plugins/org.eclipse.jdt.core
+2906641049.index
+1431378041.index
+1305847954.index
+984481328.index
+3658697876.index
+3159926292.index
+30356167.index
+4214765121.index
+1144923718.index
+1481529634.index
+374653516.index
+856989684.index
+1870061360.index
+930728806.index
+253889599.index
+3510958202.index
+3565323310.index
+707012200.index
+2294241149.index
+3209404513.index
+497750845.index
+1073017369.index
