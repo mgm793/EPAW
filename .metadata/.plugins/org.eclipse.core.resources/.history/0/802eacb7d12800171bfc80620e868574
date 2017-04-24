@@ -1,0 +1,92 @@
+package server;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Server
+ */
+@WebServlet("/Server")
+public class Server extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Server() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		String query = "SELECT * FROM Twitter.users";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			ResultSet users = DB.executeSQL(query);
+			out.println("<body>\n"+
+					"<style>"+
+					"table {background-color:white}"+
+					"td,th,tr,table {border: 1px solid black;}"+
+					"tr:nth-child(odd) {background-color: #f2f2f2;}"+
+					"td,th,tr {padding: 5px; text-align: center;}"+
+					"</style>"+
+					"<h3>Users</h3>"+
+					"<table>\n"+
+					"<tr>\n"+
+					"<th>Name</th>\n" +
+					"<th>Description</th>\n" +
+					"<th>ID</th>\n" +
+					"<th>Phone</th>\n" +
+					"</tr>\n");
+			while (users.next()) {
+	            String username = users.getString("username");
+	            String description = users.getString("description");
+	            int id = users.getInt("id");
+	            int phone = users.getInt("phone");
+	            out.println(
+	            		"<tr>\n"+
+						"<td>"+username+"</td>\n" +
+						"<td>"+description+"</td>\n" +
+						"<td>"+id+"</td>\n" +
+						"<td>"+phone+"</td>\n" +
+						"</tr>\n"
+	            		);
+	        }
+			 out.println(
+	            		"</table>\n"+
+						"</body>\n"
+	            		);
+		} catch (Exception e) {
+			out.println("<body>\n"+
+					"<style>"+
+					"</style>"+
+					"<h3>Can not connect with DataBase, try it later!</h3>"
+					);
+			e.printStackTrace();
+			
+		}
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
