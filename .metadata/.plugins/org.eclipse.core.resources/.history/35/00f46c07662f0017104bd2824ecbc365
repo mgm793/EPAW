@@ -1,0 +1,31 @@
+var APP = {
+	init: function(){
+		calendar();
+		checkPassword();
+	}
+}
+
+function calendar(){
+	document.querySelector('input[name="birthday"]').onfocus = function(){
+		this.type = "date";
+	};
+	document.querySelector('input[name="birthday"]').onblur = function(){
+		this.type = "text";
+	};
+}
+
+function checkPassword(){
+	document.querySelector('[name="pass2"]').onblur = function(){
+		pass1 = document.querySelector('[name="pass1"]');
+		console.log(pass1.value + " " + this.value)
+		if (pass1.value != this.value){
+			pass1.style.borderColor = this.style.borderColor = "red";
+		}
+		else{
+			pass1.style.borderColor = this.style.borderColor = "lightGrey";
+		}
+	};
+}
+
+APP.init();
+
