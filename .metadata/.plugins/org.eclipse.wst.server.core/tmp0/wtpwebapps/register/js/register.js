@@ -21,10 +21,10 @@ function calendar(){
 	};
 }
 
-function checkPassword(){ //to refactor
+function checkPassword(){
 	var pass2 = document.querySelector('[name="pass2"]');
 	var pass1 = document.querySelector('[name="pass1"]');
-	pass2.onblur = pass1.onblur = function(){
+	pass2.onkeyup = pass1.onkeyup = function(){
 		passBorder(pass1,pass2);
 	} 
 }
@@ -32,6 +32,8 @@ function checkPassword(){ //to refactor
 function passBorder(pass1, pass2){
 	if (pass1.value != pass2.value){
 		pass1.style.borderColor = pass2.style.borderColor = "#F44336";
+		REGISTER.validate.pass = false;
+		checkValid();
 	}
 	else{
 		pass1.style.borderColor = pass2.style.borderColor = "lightGrey";
