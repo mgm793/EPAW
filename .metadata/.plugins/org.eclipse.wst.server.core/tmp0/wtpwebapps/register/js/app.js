@@ -1,6 +1,6 @@
 var APP = {
 	init: function(){
-		FORM.init();
+		REGISTER.init();
 	}
 }
 

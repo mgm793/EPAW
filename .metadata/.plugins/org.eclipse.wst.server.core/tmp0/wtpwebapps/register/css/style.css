@@ -110,5 +110,10 @@ input[type=search]{
 	outline: none;
 }
 
+.btn-submit:disabled{
+	background-color: lightgrey;
+	cursor: initial;
+}
+
 
 

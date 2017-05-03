@@ -9,6 +9,15 @@
 	<title>Register</title>
 </head>
 <body>
+<% 
+BeanUser user = null;
+if (request.getAttribute("user")!=null) {
+	user = (BeanUser)request.getAttribute("user");
+}
+else {
+	user = new BeanUser();
+}
+%>
 	<div class="container">
 		<form action="Register" method="POST" id="reg">
 			<div class="header">
@@ -24,11 +33,11 @@
 		<input type="text" name="birthday" id="" placeholder="Birthday*" required>
 		<input type="text" name="team" placeholder="Team Name">
 		<h5>*Required</h5>
-		<button class="btn-submit">Submit</button>
+		<button class="btn-submit" id="send">Submit</button>
 		</form>
 	</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/form.js"></script>
+<script src="js/register.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

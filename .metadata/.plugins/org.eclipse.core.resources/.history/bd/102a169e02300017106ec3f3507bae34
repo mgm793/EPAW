@@ -9,15 +9,6 @@
 	<title>Register</title>
 </head>
 <body>
-<% 
-BeanUser user = null;
-if (request.getAttribute("user")!=null) {
-	user = (BeanUser)request.getAttribute("user");
-}
-else {
-	user = new BeanUser();
-}
-%>
 	<div class="container">
 		<form action="Register" method="POST" id="reg">
 			<div class="header">
