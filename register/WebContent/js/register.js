@@ -5,7 +5,9 @@ var REGISTER = {
 		checkValid();
 	},
 	validate: {
-		pass: false
+		pass: false,
+		user: false,
+		mail: false
 	}
 }
 

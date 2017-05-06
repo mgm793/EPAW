@@ -34,27 +34,30 @@ public class BeanUser implements Serializable  {
 	public String getBirthD() {
 		return birthD;
 	}
-	public String getPass2() {
-		return pass2;
-	}
+	
 	
 	/*Setters*/
 	public void setUser(String user){
-		this.user = user;		
+		this.user = user;
+		System.out.println("Filling user field");
+		
 	}
 	
 	public void setMail(String mail){
+		System.out.println("Filling mail field");
 		this.mail = mail;
 	}
 	
 
 	public void setPass(String pass) {
+		System.out.println("Filling PASS field");
 		this.pass = pass;
 	}
 
 
 
 	public void setTeam(String team) {
+		System.out.println("Filling Team field");
 		this.team = team;
 	}
 
@@ -62,10 +65,18 @@ public class BeanUser implements Serializable  {
 
 	public void setBirthD(String birthD) {
 		this.birthD = birthD;
+		System.out.println("Filling BirthD field");
 	}
 	
+
+
+	public String getPass2() {
+		return pass2;
+	}
+
 	public void setPass2(String pass2) {
 		this.pass2 = pass2;
+		System.out.println("Filling PASS2 field");
 	}
 
 }

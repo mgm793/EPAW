@@ -26,12 +26,12 @@ import models.BeanUser;
 @WebServlet("/FormController")
 public class FormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
     public FormController() {
-    	super();
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -50,7 +50,7 @@ public class FormController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Register.jsp");
 			dispatcher.forward(request, response);
 		}  
-	}
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -62,48 +62,44 @@ public class FormController extends HttpServlet {
 			registerUser(DB,request);
 		}
 		// else if(request.getAttribute("checkUser") != null){
-		// 	checkUser(DB,request);	
+		// 	String user = request.getParameter("username");
+		// 	String query = "";
+		// 	try {
+		// 		DB = new DataBase();
+		// 		DB.insertSQL(query);	
+		// 	}catch (Exception e) {
+		// 		e.printStackTrace();
+		// 	}
+			
 		// }
 		doGet(request, response);
 	}
-	
-	// protected String checkUser(DataBase DB, HttpServletRequest request){
-	// 	String user = request.getParameter("username");
-	// 	String query = "";
-	// 	try {
-	// 		DB = new DataBase();
-	// 		DB.insertSQL(query);	
-	// 	}catch (Exception e) {
-	// 		e.printStackTrace();
-	// 	}
-		
-	// }
 
 	protected void registerUser(DataBase DB, HttpServletRequest request){
 		BeanUser user = new BeanUser();
-		Map<String, String[]> params = new HashMap<>(request.getParameterMap());
-		params.remove("register");
-		try {
-			BeanUtils.populate(user, params);
-		} catch (IllegalAccessException e1) {
+			Map<String, String[]> params = new HashMap<>(request.getParameterMap());
+			params.remove("register");
+			try {
+				BeanUtils.populate(user, params);
+			} catch (IllegalAccessException e1) {
 				// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InvocationTargetException e) {
+				e1.printStackTrace();
+			} catch (InvocationTargetException e) {
 				// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String usern = user.getUser();
-		String mail = user.getMail();
-		String password = user.getPass();
-		String date = user.getBirthD();
-		String team = user.getTeam();
-		String query = "INSERT into users VALUES ('" + usern + "','"+ mail + "','" + password + "','" + date + "','" + team + "');";
-		try {
-			DB = new DataBase();
-			DB.insertSQL(query);	
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+				e.printStackTrace();
+			}
+			String usern = user.getUser();
+			String mail = user.getMail();
+			String password = user.getPass();
+			String date = user.getBirthD();
+			String team = user.getTeam();
+			String query = "INSERT into users VALUES ('" + usern + "','"+ mail + "','" + password + "','" + date + "','" + team + "');";
+			try {
+				DB = new DataBase();
+				DB.insertSQL(query);	
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 	
 	protected List<BeanUser> getUsers(){
