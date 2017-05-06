@@ -9,11 +9,10 @@ public class BeanUser implements Serializable  {
 	private String user = "";
 	private String mail = "";
 	private String pass = "";
+	private String pass2 = "";
 	private String team = "";
 	private String birthD = "";
 	
-	/*  Control which parameters have been correctly filled */
-	private int[] error = {0,0}; 
 	
 	/* Getters */
 	public String getUser(){
@@ -22,10 +21,6 @@ public class BeanUser implements Serializable  {
 	
 	public String getMail() {
 		return mail;
-	}
-	
-	public int[] getError() {
-		return error;
 	}
 	
 	public String getPass() {
@@ -43,10 +38,8 @@ public class BeanUser implements Serializable  {
 	
 	/*Setters*/
 	public void setUser(String user){
-		
+		this.user = user;
 		System.out.println("Filling user field");
-		/* We simulate a user with the same unsername exists in our DB */
-		error[0] = 1;
 		
 	}
 	
@@ -57,12 +50,14 @@ public class BeanUser implements Serializable  {
 	
 
 	public void setPass(String pass) {
+		System.out.println("Filling PASS field");
 		this.pass = pass;
 	}
 
 
 
 	public void setTeam(String team) {
+		System.out.println("Filling Team field");
 		this.team = team;
 	}
 
@@ -70,18 +65,18 @@ public class BeanUser implements Serializable  {
 
 	public void setBirthD(String birthD) {
 		this.birthD = birthD;
+		System.out.println("Filling BirthD field");
 	}
 	
-	/* Logic Functions */
-	
-	/*Check if all the fields are filled correctly */
-	public boolean isComplete() {
-	    return(hasValue(getUser()) &&
-	           hasValue(getMail()) );
+
+
+	public String getPass2() {
+		return pass2;
 	}
-	
-	private boolean hasValue(String val) {
-		return((val != null) && (!val.equals("")));
+
+	public void setPass2(String pass2) {
+		this.pass2 = pass2;
+		System.out.println("Filling PASS2 field");
 	}
 
 }

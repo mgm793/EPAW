@@ -2,7 +2,10 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="server.DataBase"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-<fullyQualifiedTypeName name="models.BeanUser"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="java.lang.reflect.InvocationTargetException"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="models.BeanUser"/>
+<fullyQualifiedTypeName name="database.DataBase"/>
+<fullyQualifiedTypeName name="com.mysql.jdbc.ResultSet"/>
 </qualifiedTypeNameHistroy>

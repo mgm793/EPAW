@@ -10,7 +10,7 @@ var REGISTER = {
 }
 
 function calendar(){
-	var b = document.querySelector('input[name="birthday"]');
+	var b = document.querySelector('input[name="birthD"]');
 	b.onfocus = function(){
 		this.type = "date";
 		setMinDate();
@@ -23,7 +23,7 @@ function calendar(){
 
 function checkPassword(){
 	var pass2 = document.querySelector('[name="pass2"]');
-	var pass1 = document.querySelector('[name="pass1"]');
+	var pass1 = document.querySelector('[name="pass"]');
 	pass2.onkeyup = pass1.onkeyup = function(){
 		passBorder(pass1,pass2);
 	} 
@@ -53,5 +53,5 @@ function setMinDate(){
 	var year = now.getFullYear() - 16;
 	var month = (now.getUTCMonth() + 1 >= 10 ? "" : "0") + (now.getUTCMonth() + 1);
 	var day = (now.getDay() >= 10 ? "" : "0") + now.getDay();
-	document.querySelector('[name = birthday]').max = year + "-" + month + "-" +  day;
+	document.querySelector('[name = birthD]').max = year + "-" + month + "-" +  day;
 }
