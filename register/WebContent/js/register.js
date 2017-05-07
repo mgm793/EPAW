@@ -61,6 +61,7 @@ function checkUser(){
 				if(response == "repeat"){
 					userDiv.style.borderColor = "#F44336";
 					REGISTER.validate.user = false;
+					checkValid();
 				}
 				else{
 					userDiv.style.borderColor = "lightGrey";
@@ -86,6 +87,7 @@ function checkMail(){
 				if(response == "repeat"){
 					userDiv.style.borderColor = "#F44336";
 					REGISTER.validate.mail = false;
+					checkValid();
 				}
 				else{
 					userDiv.style.borderColor = "lightGrey";
@@ -110,6 +112,6 @@ function setMinDate(){
 	var now = new Date();
 	var year = now.getFullYear() - 16;
 	var month = (now.getUTCMonth() + 1 >= 10 ? "" : "0") + (now.getUTCMonth() + 1);
-	var day = (now.getDay() >= 10 ? "" : "0") + now.getDay();
+	var day = (now.getDate() >= 10 ? "" : "0") + now.getDate();
 	document.querySelector('[name = birthD]').max = year + "-" + month + "-" +  day;
 }
