@@ -47,6 +47,7 @@ public class FormController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		else{
+			request.setAttribute("teams", getTeams());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Register.jsp");
 			dispatcher.forward(request, response);
 		}  
@@ -60,24 +61,53 @@ public class FormController extends HttpServlet {
 		DataBase DB = null;
 		if (request.getParameter("register") != null) {
 			registerUser(DB,request);
+			doGet(request, response);
 		}
-		// else if(request.getAttribute("checkUser") != null){
-		// 	checkUser(DB,request);	
-		// }
-		doGet(request, response);
+		else if(request.getParameter("checkUser") != null){
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().print(checkUser(DB,request));		
+		}
+		else if(request.getParameter("checkMail") != null){
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().print(checkMail(DB,request));		
+		}
+		else{
+			doGet(request, response);
+		}
 	}
 	
-	// protected String checkUser(DataBase DB, HttpServletRequest request){
-	// 	String user = request.getParameter("username");
-	// 	String query = "";
-	// 	try {
-	// 		DB = new DataBase();
-	// 		DB.insertSQL(query);	
-	// 	}catch (Exception e) {
-	// 		e.printStackTrace();
-	// 	}
+	protected String checkUser(DataBase DB, HttpServletRequest request){
+		String user = request.getParameter("user");
+		String query = "SELECT Count(username) AS c FROM users WHERE username = '" + user  + "';";
+		try {
+			DB = new DataBase();
+			ResultSet res = DB.executeSQL(query);
+			res.next();
+			if(res.getInt(1) > 0) return "repeat";
+			else return "new";
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 		
-	// }
+	}
+	protected String checkMail(DataBase DB, HttpServletRequest request){
+		String mail = request.getParameter("mail");
+		System.out.println(mail);
+		String query = "SELECT Count(username) AS c FROM users WHERE email = '" + mail  + "';";
+		try {
+			DB = new DataBase();
+			ResultSet res = DB.executeSQL(query);
+			res.next();
+			System.out.println(res.getInt(1));
+			if(res.getInt(1) > 0) return "repeat";
+			else return "new";
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 
 	protected void registerUser(DataBase DB, HttpServletRequest request){
 		BeanUser user = new BeanUser();
@@ -100,11 +130,13 @@ public class FormController extends HttpServlet {
 		String query = "INSERT into users VALUES ('" + usern + "','"+ mail + "','" + password + "','" + date + "','" + team + "');";
 		try {
 			DB = new DataBase();
-			DB.insertSQL(query);	
+			DB.insertSQL(query);
+			DB.disconnectBD();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	protected List<BeanUser> getUsers(){
 		String query = "SELECT * FROM users";
@@ -128,6 +160,23 @@ public class FormController extends HttpServlet {
 		}
 		return null;
 		
+	}
+	
+	protected List<String> getTeams(){
+		String query = "SELECT DISTINCT team FROM users";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			List<String> list = new ArrayList<String>();
+			ResultSet teams = DB.executeSQL(query);
+			while (teams.next()){
+				list.add(teams.getString("team"));
+			}
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

@@ -1,14 +1,20 @@
 var REGISTER = {
 	init: function(){
 		calendar();
-		checkPassword();
-		checkValid();
+		checkers();
 	},
 	validate: {
 		pass: false,
 		user: false,
 		mail: false
 	}
+}
+
+function checkers(){
+	checkPassword();
+	checkValid();
+	checkUser();
+	checkMail();
 }
 
 function calendar(){
@@ -40,13 +46,63 @@ function passBorder(pass1, pass2){
 	else{
 		pass1.style.borderColor = pass2.style.borderColor = "lightGrey";
 		REGISTER.validate.pass = true;
-		checkValid();
+		if(pass2.value != "") checkValid();
 	}
+}
+
+function checkUser(){
+	var userDiv = document.querySelector('[name="user"]')
+	userDiv.onblur = function(){
+		$.ajax({
+			url: "FormController",
+			type: "post",
+			data: "checkUser=true&user="+ this.value,
+			success: function(response) {
+				if(response == "repeat"){
+					userDiv.style.borderColor = "#F44336";
+					REGISTER.validate.user = false;
+				}
+				else{
+					userDiv.style.borderColor = "lightGrey";
+					REGISTER.validate.user = true;
+					checkValid();
+				}
+			},
+			error: function(xhr) {
+    			//Do Something to handle error
+    		}
+    	});
+	};
+}
+
+function checkMail(){
+	var userDiv = document.querySelector('[name="mail"]')
+	userDiv.onblur = function(){
+		$.ajax({
+			url: "FormController",
+			type: "post",
+			data: "checkMail=true&mail="+ this.value,
+			success: function(response) {
+				if(response == "repeat"){
+					userDiv.style.borderColor = "#F44336";
+					REGISTER.validate.mail = false;
+				}
+				else{
+					userDiv.style.borderColor = "lightGrey";
+					REGISTER.validate.mail = true;
+					checkValid();
+				}
+			},
+			error: function(xhr) {
+    			//Do Something to handle error
+    		}
+    	});
+	};
 }
 
 function checkValid(){
 	var button = document.querySelector('#send');
-	if(!REGISTER.validate.pass) button.disabled = true;
+	if(!REGISTER.validate.pass || !REGISTER.validate.mail || !REGISTER.validate.user) button.disabled = true;
 	else button.disabled = false;
 }
 

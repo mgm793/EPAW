@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@ pageEncoding="UTF-8" %>
 </head>
 <body>
 <div class="container">
-	<form action="FormController" method="POST" id="reg">
+	<form action="FormController" method="POST">
 		<div class="header">
 			<div class="img-head">
 				<img src="imgs/ano.png" alt="img">
@@ -22,7 +23,19 @@ pageEncoding="UTF-8" %>
 		<input type="password" name="pass" placeholder="Password*" required>
 		<input type="password" name="pass2" placeholder="Repeat Password" required>
 		<input type="text" name="birthD" placeholder="Birthday*" required>
-		<input type="text" name="team" placeholder="Team Name">
+		<input list="teams" name="team" placeholder="Team Name">
+		<datalist id ="teams">
+    		<%
+				List<String> teams = (List<String>) request.getAttribute("teams");
+					if(teams!=null){
+						for(String team: teams){
+							out.println(
+								"<option value='" + team + "'>"
+							);
+						}
+					}	
+			%>
+  		</datalist>
 		<h5>*Required</h5>
 		<button class="btn-submit" id="send" name="register">Submit</button>
 	</form>
