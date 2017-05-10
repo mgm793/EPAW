@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;controllers.FormController&apos; to &apos;RegisterController&apos;&#x0A;- Original project: &apos;register&apos;&#x0A;- Original element: &apos;controllers.FormController&apos;&#x0A;- Renamed element: &apos;controllers.RegisterController&apos;&#x0A;- Update references to refactored element&#x0A;- Rename similarly named elements&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;FormController&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;controllers{FormController.java[FormController" matchStrategy="1" name="RegisterController" qualified="false" references="true" similarDeclarations="true" stamp="1494341165695" textual="false" version="1.0"/>
+</session>
