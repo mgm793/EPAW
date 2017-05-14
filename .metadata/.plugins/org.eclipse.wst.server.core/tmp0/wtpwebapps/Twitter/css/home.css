@@ -1,6 +1,17 @@
+@font-face {
+    font-family: hacked;
+    src: url(../fonts/HACKED.ttf);
+}
+
 *{
 	padding: 0;
 	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color: black;
 }
 .no-select{
 	-webkit-user-select: none;
@@ -12,6 +23,9 @@
 .container{
 	width: 100vw;
 	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
 	background-color: #f2f2f2;
 }
 
@@ -24,26 +38,95 @@ header{
 	height: 50px;
 	box-shadow: 0 0.5px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
 	background-color: white;
-	display: flex;
-	align-items: center;
+}
+
+.left img{
+	height: 80%;
+	width: auto;
+	margin-left: 40px;
+}
+
+.right, .center, .left{
+	width: calc(100% / 3);
+	height: 100%;
+	float: left;
+}
+
+.center{
 	justify-content: center;
 }
 
-header img{
-	height: 80%;
-	width: auto;
+.right{
+	justify-content: flex-end;
 }
 
-.select{
-	width: 50%;
-	height: 100%;
-	background-color: red;
-	float: left;
+.left, .center, .right{
+	display: flex;
+	align-items: center;
 }
+
+.login{
+	margin-right: 20px;
+}
+
+.register, .login{
+	font-weight: 700;
+	padding:0 20px;
+}
+
+.register a:hover, .login a:hover{
+	color: lightgrey;
+	cursor: pointer;
+}
+
+.left p{
+	margin-left: 10px;
+	font-family: hacked;
+	font-size: x-large;
+}
+
+/* BODY */
+
+.mainCont{
+	width: 100%;
+	margin-top: 50px;
+	height: calc(100vh - 50px);
+}
+.select{
+	width: calc(50% - 100px);
+	height: calc(100% - 175px);
+	padding: 50px;
+	float: left;
+	display: flex;
+	padding-top: 125px;
+	justify-content: flex-end;
+}
+
+.selectBody{
+	width: 90%;
+}
+
+.selectBody h2{
+	font-family: hacked;
+	letter-spacing: 5px;
+	font-size: 5em;
+	margin-bottom: 20px;
+}
+
+.selectBody p{
+	font-size: x-large;
+}
+
 .image{
+	display: flex;
+	align-items: center;
 	width: 50%;
 	height: 100%;
-	background-color: green;
 	float: right;
+}
+
+.image img{
+	width: 80%;
+	height: auto;
 }
 

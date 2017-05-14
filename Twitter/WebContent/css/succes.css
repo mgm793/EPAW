@@ -10,6 +10,9 @@
 .container{
 	width: 100vw;
 	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .message {
 	box-sizing: border-box;
@@ -17,13 +20,11 @@
     -webkit-box-sizing: border-box;
 	border-top: 6px solid grey;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	width: 70%;
-	height: 70%;
 	background: #f1f1f1;
-	position: fixed;
-	top: 12.5%;
-	left: 12.5%;
 	padding: 2%;
+	min-width: calc(645px + 4%);
+	width: 60%;
+	
 }
 
 .image{
@@ -47,6 +48,7 @@
 }
 
 .resTable{
+	min-width:645px;
 	padding: 3% 0;
 	width: 100%;
 	text-align: center;

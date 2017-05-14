@@ -128,6 +128,7 @@ function checkUser(){
 				else{
 					userDiv.style.borderColor = "lightGrey";
 					if(userDiv.value != "") REGISTER.validate.user = true;
+					setInputError(userDiv, "");
 					checkValid();
 				}
 			},

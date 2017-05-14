@@ -1576,3 +1576,15 @@ org.eclipse.json.provisonnal.com.eclipsesource.json.ParseException: Expected val
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY org.eclipse.jface.text 2 0 2017-05-10 20:59:29.278
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-05-10 20:59:29.352
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-05-10 20:59:38.928
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-05-10 20:59:38.935
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'

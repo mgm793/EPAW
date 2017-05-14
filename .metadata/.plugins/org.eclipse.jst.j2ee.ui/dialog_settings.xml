@@ -6,6 +6,7 @@
 		<item value="Apache Tomcat v7.0"/>
 	</list>
 	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="/Users/mgm793/Desktop/register.war"/>
 		<item value="/Users/mgm793/Desktop/Twitter.war"/>
 	</list>
 </section>
