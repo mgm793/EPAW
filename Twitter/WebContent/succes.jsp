@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="models.BeanUser" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +12,8 @@
 </head>
 <body>
 	<div class="container">
-		
 		<div class="message">
-			<div class="image">
+			<div class="image_succes">
 				<div class="insImage"><img class="anoImage" src="imgs/ano.png"></div>
 			</div>
 			<div class="messTitle"> USERS </div>
@@ -28,22 +26,15 @@
 						<th> Birthday </th>
 						<th> Team Name</th>
 					</tr>
-					<%
-					List<BeanUser> users = (List<BeanUser>) request.getAttribute("users");
-					if(users!=null){
-						for(BeanUser user: users){
-							out.println(
-								"<tr>" + 
-								"<td>" + user.getUser() + "</td>" +
-								"<td>" + user.getMail() + "</td>" +
-								"<td>" + user.getPass() + "</td>" +
-								"<td>" + user.getBirthD() + "</td>" +
-								"<td>" + user.getTeam() + "</td>" +
-								"</tr>"
-							);
-						}
-					}
-					%>
+					<c:forEach items="${users}" var="user">
+						<tr>
+							<td> ${user.getUser()}  </td> 
+							<td> ${user.getMail()} </td>
+							<td> ${user.getPass()} </td>
+							<td> ${user.getBirthD()} </td>
+							<td> ${user.getTeam()} </td>
+						</tr>					
+					</c:forEach>
 				</table>
 			</div>	
 		</div>

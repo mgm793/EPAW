@@ -16,59 +16,6 @@ function checkers(){
 	checkUser();
 	checkMail();
 }
-// function checkPassStrength(pass) {
-// 	input = document.querySelector('[name = "pass"]');
-// 	var score = scorePassword(pass);
-// 	var color = "";
-// 	var strength = "";
-// 	switch (score) {
-// 		case 0:
-// 		case 1:
-// 		strength = "Weak";
-// 		color = "red";
-// 		break;
-// 		case 2:
-// 		strength = "Good";
-// 		color = "darkorange";
-// 		break;
-// 		case 3:
-// 		case 4:
-// 		strength = "Strong";
-// 		color = "green";
-// 		break;
-// 		case 5:
-// 		strength = "Very Strong";
-// 		color = "darkgreen";
-// 		break;
-// 	}
-// 	input.style.borderColor = color;
-// }
-// function scorePassword(pass) {
-      
-//         if (pass.length == 0) {
-//             mess.innerHTML = "";
-//             return 0;
-//         }
-//         var regex = new Array();
-//         regex.push("[A-Z]"); 
-//         regex.push("[a-z]"); 
-//         regex.push("[0-9]"); 
-//         regex.push("[$@$!%*#?&]"); 
- 
-//         var score = 0;
-
-//         for (var i = 0; i < regex.length; i++) {
-//             if (new RegExp(regex[i]).test(pass)) {
-//                 score++;
-//             }
-//         }
-
-//         if (score > 2 && pass.length > 8) {
-//             score++;
-//         }
-
-//         return score;
-//     }
 
 function calendar(){
 	var b = document.querySelector('input[name="birthD"]');
@@ -88,9 +35,6 @@ function checkPassword(){
 	pass2.onkeyup = pass1.onkeyup = function(){
 		passBorder(pass1,pass2);
 	}
-	// pass1.onkeyup = function(){
-	// 	checkPassStrength(pass1.value);
-	// } 
 }
 
 function passBorder(pass1, pass2){
@@ -128,8 +72,9 @@ function checkUser(){
 				else{
 					userDiv.style.borderColor = "lightGrey";
 					if(userDiv.value != "") REGISTER.validate.user = true;
-					setInputError(userDiv, "");
 					checkValid();
+					if(userDiv.value != "")
+						setInputError(userDiv, "");		
 				}
 			},
 			error: function(xhr) {

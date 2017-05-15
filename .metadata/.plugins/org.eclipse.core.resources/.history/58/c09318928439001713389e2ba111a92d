@@ -1,0 +1,15 @@
+var APP = {
+	init: function(){
+		// REGISTER.init();
+		goTo("register");
+	}
+}
+
+function goTo(str){
+	$('.mainCont').load(str, {"page": str}, function(){
+		$('head').append('<link rel="stylesheet" href="css/'+ str +'.css" type="text/css" />');
+	});
+}
+
+APP.init();
+

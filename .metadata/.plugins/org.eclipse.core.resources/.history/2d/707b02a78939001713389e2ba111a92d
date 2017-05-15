@@ -1,0 +1,23 @@
+var APP = {
+	init: function(){
+		goTo("home");
+		checkClick();
+	}
+}
+
+function goTo(str){
+	document.querySelector('#pageStyle').href = "css/" + str + ".css";
+	$('.mainCont').load(str, {"page": str});
+}
+
+function checkClick(){
+	document.querySelector('.register').onclick = function(){
+		goTo("register");
+	}
+	document.querySelector('.login').onclick = function(){
+		goTo("login");	
+	} 
+}
+
+APP.init();
+
