@@ -13,7 +13,7 @@ a{
 }
 
 form{
-	text-align: center;
+	position:relative;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -51,16 +51,6 @@ input:focus{
 	border-bottom: 4px solid grey;
 }
 
-
-input:last-child{
-	margin-bottom: 10px;
-}
-
-input[type=search]{
-	width: 100% !important;
-	/*box-sizing: none;*/
-}
-
 h5{
 	color: grey;
 	margin-top: 10px;
@@ -68,12 +58,16 @@ h5{
 	text-align: right;
 }
 
+label{
+	
+}
+
 .btn-submit{
 	border: none;
 	margin: 0 auto;
 	background-color: grey;
 	width: 80%;
-	margin-top: 50px;
+	margin-top: 20px;
 	margin-bottom: 20px;
 	height: 40px;
 	text-align: center;
@@ -98,5 +92,36 @@ h5{
 	cursor: initial;
 }
 
-
-
+/* CHECK BOX */
+.check {
+  margin: 20px 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+input[type="checkbox"] {
+  display: none;
+}
+label{
+	font-size: small;
+	cursor: pointer;
+}
+input[type="checkbox"] + label:before {
+  margin-right: 5px;
+  border: 1px solid black;
+  border-radius: 100%;
+  content: " ";
+  display: inline-block;
+  height: 10px;
+  margin: 2px 5px 0 0;
+  padding: 0;
+  vertical-align: top;
+  width: 10px;
+}
+input[type="checkbox"]:checked + label:before {
+  background: grey;
+  border: 1px solid grey;
+  content: " ";
+  text-align: center;
+}

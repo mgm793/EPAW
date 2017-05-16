@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="css/login.css">
 	<link rel="stylesheet" href="css/succes.css">
 	<link rel="shortcut icon" type="image/x-icon" href="imgs/ano_white.png">
-	<title>Home - Hackeet</title>
+	<title>Hackeet</title>
 </head>
 <body>
 	<div class="container">

@@ -9,6 +9,8 @@ function goTo(str){
 	$('.mainCont').load(str, function(){
 		if(str == "register")
 			REGISTER.init();
+		str = str.replace(/\b\w/g, l => l.toUpperCase());
+		document.title = str + " - Hackeet";
 	});
 }
 

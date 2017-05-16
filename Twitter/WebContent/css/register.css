@@ -30,7 +30,7 @@ form p{
 	font-size: xx-large;
 }
 
-input{
+input:not([type = "checkbox"]){
 	width: calc(100% - 20px)!important;
 	padding: 10px;
 	margin-top: 10px;
