@@ -10,6 +10,7 @@ var REGISTER = {
 	}
 }
 
+
 function checkers(){
 	checkPassword();
 	checkValid();
@@ -123,4 +124,28 @@ function setMinDate(){
 	var month = (now.getUTCMonth() + 1 >= 10 ? "" : "0") + (now.getUTCMonth() + 1);
 	var day = (now.getDate() >= 10 ? "" : "0") + now.getDate();
 	document.querySelector('[name = birthD]').max = year + "-" + month + "-" +  day;
+}
+
+function submitRegister(form){
+	  event.preventDefault();
+	  $.ajax({
+			url: "register",
+			type: "post",
+			data: "register=true&" + $( form ).serialize(),
+			success: function(response, status, request) {
+				var container = document.querySelector('.mainCont'); 
+				container.innerHTML = response;
+				str = document.querySelector(".type").innerText.toLowerCase();
+				str = str.replace(/\b\w/g, l => l.toUpperCase());
+				document.title = str + " - Hackeet";
+			},
+			error: function(xhr) {
+    			//Do Something to handle error
+    		}
+    	});
+}
+
+
+function killEvents(){
+
 }

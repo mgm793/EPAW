@@ -8,11 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class AppController
  */
-@WebServlet("/AppController")
+@WebServlet("/App")
 public class AppController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,8 +30,14 @@ public class AppController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("page", "home");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Home.jsp");
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user")!=null){
+			request.setAttribute("page", "timeline");
+		}
+		else{
+			request.setAttribute("page", "home");
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/App.jsp");
 		dispatcher.forward(request, response);
 	}
 

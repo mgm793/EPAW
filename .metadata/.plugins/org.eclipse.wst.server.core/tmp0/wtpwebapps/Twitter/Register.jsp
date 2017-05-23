@@ -1,11 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="form">
-<form action="register" method="POST">
+<div class="form" >
+<form onsubmit="submitRegister(this)" >
 	<div class="header">
 		<div class="img-head">
 			<img src="imgs/ano.png" alt="img">
 		</div>
-		<p>REGISTER</p>
+		<p class="type">REGISTER</p>
 	</div>
 	<input type="text" name="user" placeholder="Username*" autofocus required minlength=4 maxlength=10>
 	<input type="email" name="mail" placeholder="Email*" required>
@@ -19,7 +19,7 @@
 		</c:forEach>
 	</datalist>
 	<h5>*Required</h5>
-	<button class="btn-submit" id="send" name="register">Submit</button>
+	<button class="btn-submit" id="send">Submit</button>
 </form>
 </div>
 <script src="js/register.js"></script>

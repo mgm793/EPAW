@@ -69,16 +69,16 @@ header{
 	align-items: center;
 }
 
-.login{
+.login, .logout{
 	margin-right: 20px;
 }
 
-.register, .login{
+.register, .login, .logout, .nameshow {
 	font-weight: 700;
 	padding:0 20px;
 }
 
-.register:hover, .login:hover{
+.register:hover, .login:hover, .logout:hover{
 	color: lightgrey;
 	cursor: pointer;
 }

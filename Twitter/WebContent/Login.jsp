@@ -1,10 +1,10 @@
 <div class="container_login">
-<form action="login" method="POST">
+<form onsubmit="submitLogin(this)">
 	<div class="header">
 		<div class="img-head">
 			<img src="imgs/ano.png" alt="img">
 		</div>
-		<p>LOGIN</p>
+		<p class="type">LOGIN</p>
 	</div>
 	<input type="text" name="user" placeholder="Username" autofocus required minlength=4 maxlength=10>
 	<input type="password" name="pass" placeholder="Password" required>
