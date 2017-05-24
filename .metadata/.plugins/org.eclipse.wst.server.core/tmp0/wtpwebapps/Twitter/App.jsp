@@ -27,17 +27,7 @@
 			</div>
 			<div class="center"></div>
 			<div class="right">
-				<c:choose>
-					<c:when test="${sessionScope.user==null}">
-       					<div class="register">Register</div>
-						<div class="login">Login</div>	
-					</c:when>
-					<c:otherwise>
-						<div class="nameshow"> ${sessionScope.user} </div>
-						<div class="logout">Logout</div>
-					</c:otherwise>
-				</c:choose>
-				
+
 			</div>
 		</header>
 		<div class="mainCont"></div>

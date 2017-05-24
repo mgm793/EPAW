@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.DataBase;
+import models.BeanLogin;
 
 /**
  * Servlet implementation class LoginController
@@ -33,8 +32,12 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		if(request.getAttribute("acces") == "true"){
+		BeanLogin login = new BeanLogin();
+		String user = request.getParameter("user");
+		String pass = request.getParameter("pass");
+		if(login.getAcces(user, pass)){
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -50,25 +53,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataBase DB = null;
-		String user = request.getParameter("user");
-		String pass = request.getParameter("pass");
-		String query = "SELECT COUNT(*) FROM users WHERE username = '"+ user +"' and passwd = '" + pass + "'";
-		try {
-			DB = new DataBase();
-			ResultSet res = DB.executeSQL(query);
-			res.next();
-			if(res.getInt(1) > 0) {
-				request.setAttribute("acces", "true");
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-			}
-			else request.setAttribute("acces", "false");
-			doGet(request, response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doGet(request, response);
 		
 	}
 	

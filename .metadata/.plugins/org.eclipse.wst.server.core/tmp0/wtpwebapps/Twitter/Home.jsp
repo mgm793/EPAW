@@ -1,3 +1,7 @@
+<script type="text/javascript">
+
+</script>
+<p class="type" style="display: none">Home</p>
 <div class="select">
 	<div class="selectBody">
 		<h2>Hackeet</h2>

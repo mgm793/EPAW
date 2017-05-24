@@ -61,7 +61,7 @@ function checkUser(){
 	userDiv.onblur = function(){
 		$.ajax({
 			url: "register",
-			type: "post",
+			type: "get",
 			data: "checkUser=true&user="+ this.value,
 			success: function(response) {
 				if(response == "repeat"){
@@ -90,7 +90,7 @@ function checkMail(){
 	mailDiv.onblur = function(){
 		$.ajax({
 			url: "register",
-			type: "post",
+			type: "get",
 			data: "checkMail=true&mail="+ this.value,
 			success: function(response) {
 				if(response == "repeat"){

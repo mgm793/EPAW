@@ -1,0 +1,20 @@
+package models;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class BeanLogin
+ */
+@Stateless
+@LocalBean
+public class BeanLogin {
+
+    /**
+     * Default constructor. 
+     */
+    public BeanLogin() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class HomeController
@@ -29,8 +30,15 @@ public class HomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Home.jsp");
-		dispatcher.forward(request, response);
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user")!=null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
+			dispatcher.forward(request, response);
+		}
+		else{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/Home.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	/**
