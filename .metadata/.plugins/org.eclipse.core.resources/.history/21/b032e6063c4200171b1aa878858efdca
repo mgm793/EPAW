@@ -21,8 +21,8 @@ pageEncoding="UTF-8"%>
 </div>
 <c:if test='${error == "true"}'>
 	<div class="error">
-		<div class="errorContainer">
-		<p class="Tcenter">The username or password are incorrect. Nice try!</p>
+		<div class="errorContainer .Tcenter">
+		<p>The username or password are incorrect. Nice try!</p>
 		<div class="closeBtn" onclick="closeError()">Close</div>
 		</div>
 	</div>

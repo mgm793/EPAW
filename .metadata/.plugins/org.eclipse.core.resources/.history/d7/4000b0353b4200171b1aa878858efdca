@@ -170,8 +170,5 @@ input[type="checkbox"]:checked + label:before {
 .error p{
 	font-family: hacked;
 	font-size: xx-large;
-}
-
-.Tcenter{
 	text-align: center;
 }

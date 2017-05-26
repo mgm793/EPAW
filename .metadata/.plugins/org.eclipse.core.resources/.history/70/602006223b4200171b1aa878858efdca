@@ -171,7 +171,3 @@ input[type="checkbox"]:checked + label:before {
 	font-family: hacked;
 	font-size: xx-large;
 }
-
-.Tcenter{
-	text-align: center;
-}
