@@ -9,7 +9,7 @@
 	<input type="text" name="user" placeholder="Username" autofocus required minlength=4 maxlength=10>
 	<input type="password" name="pass" placeholder="Password" required>
 	<div class="check no-select">
-      <input type="checkbox" id="c1" name="cb">
+      <input type="checkbox" id="c1" name="cb" value="1">
       <label for="c1">Remember me</label>
     </div>
 	<button class="btn-submit" id="send">Submit</button>

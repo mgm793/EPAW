@@ -35,8 +35,10 @@ public class LoginController extends HttpServlet {
 		BeanLogin login = new BeanLogin();
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
+		String check = request.getParameter("check");
 		if(login.getAcces(user, pass)){
 			HttpSession session = request.getSession();
+			session.setAttribute("check", check);
 			session.setAttribute("user", user);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
 			dispatcher.forward(request, response);

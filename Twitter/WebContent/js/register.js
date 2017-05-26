@@ -144,8 +144,3 @@ function submitRegister(form){
     		}
     	});
 }
-
-
-function killEvents(){
-
-}

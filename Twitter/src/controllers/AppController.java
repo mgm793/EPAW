@@ -31,7 +31,12 @@ public class AppController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user")!=null){
+		
+		if( session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true")){
+			session.invalidate();
+			request.setAttribute("page", "home");
+		}
+		else if (session.getAttribute("user")!=null){
 			request.setAttribute("page", "timeline");
 		}
 		else{

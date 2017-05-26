@@ -1,9 +1,13 @@
 function submitLogin(form){
 	event.preventDefault();
+	if($( "#c1:checked" ).val() != undefined)
+		var check = "true";
+	else check = "false";
+	console.log($( form ).serialize() + "&check=" + check);
 	$.ajax({
 		url: "login",
 		type: "post",
-		data: $( form ).serialize(),
+		data: $( form ).serialize() + "&check=" + check ,
 		success: function(response, status, request) {
 			var container = document.querySelector('.mainCont'); 
 			container.innerHTML = response;
