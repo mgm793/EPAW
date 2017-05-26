@@ -1,3 +1,8 @@
+function closeError(){
+	$(".error").hide();
+}
+
+
 function submitLogin(form){
 	event.preventDefault();
 	if($( "#c1:checked" ).val() != undefined)

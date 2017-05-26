@@ -103,6 +103,8 @@ function checkMail(){
 					mailDiv.style.borderColor = "lightGrey";
 					if(mailDiv.value != "") REGISTER.validate.mail = true;
 					checkValid();
+					if(mailDiv.value != "")
+						setInputError(mailDiv, "");
 				}
 			},
 			error: function(xhr) {

@@ -2,7 +2,7 @@
 	
 </div>
 <div class="bodyCenter">
-	<p class="type"> Timeline </p>
+	<p class="type" style="display: none"> Timeline </p>
 	<div class="input">
 		<img src="imgs/logo_user.png" alt="img">
 		<textarea id="inputTweet" maxlength="140" placeholder="What a hack?"></textarea>

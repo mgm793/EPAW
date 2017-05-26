@@ -125,3 +125,49 @@ input[type="checkbox"]:checked + label:before {
   content: " ";
   text-align: center;
 }
+
+.error{
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.errorContainer{
+	padding: 20px;
+	margin-top: 50px;
+	width: calc(30vw - 20px);
+	background-color: #f1f1f1;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+	border-top: 6px solid grey;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.closeBtn{
+	cursor: pointer;
+	border: none;
+	margin: 0 auto;
+	background-color: grey;
+	width: 50%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 1.2em;
+	border-radius: 10px;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+.error p{
+	font-family: hacked;
+	font-size: xx-large;
+}
