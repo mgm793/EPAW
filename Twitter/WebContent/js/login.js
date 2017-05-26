@@ -3,7 +3,6 @@ function submitLogin(form){
 	if($( "#c1:checked" ).val() != undefined)
 		var check = "true";
 	else check = "false";
-	console.log($( form ).serialize() + "&check=" + check);
 	$.ajax({
 		url: "login",
 		type: "post",

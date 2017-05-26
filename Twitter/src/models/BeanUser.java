@@ -131,7 +131,7 @@ public class BeanUser implements Serializable  {
 		String query = "INSERT into users VALUES ('" 
 						+ usern + "','"+ mail + "','" 
 						+ password + "','" + date 
-						+ "','" + team + "');";
+						+ "','" + team + "',NULL);";
 		try {
 			DB = new DataBase();
 			DB.insertSQL(query);
@@ -158,6 +158,7 @@ public class BeanUser implements Serializable  {
 				user.setTeam(users.getString("team"));
 				list.add(user);
 			}
+			DB.disconnectBD();
 			return list;
 		}catch (Exception e) {
 			e.printStackTrace();

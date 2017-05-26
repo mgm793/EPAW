@@ -32,7 +32,6 @@ public class LogoutController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.invalidate();
-		System.out.println("INVALIDATE");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Home.jsp");
 		dispatcher.forward(request, response);
 	}

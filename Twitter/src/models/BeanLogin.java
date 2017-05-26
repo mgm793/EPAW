@@ -23,20 +23,30 @@ public class BeanLogin implements Serializable {
 		this.pass = pass;
 	}
 	
-	public boolean getAcces(String user, String pass){
-		String query = "SELECT COUNT(*) FROM users WHERE username = '"+ user +"' and passwd = '" + pass + "'";
+	public int getAcces(String user, String pass){
+		String query = "SELECT * FROM users WHERE username = '"+ user +"' and passwd = '" + pass + "'";
 		try {
 			DataBase DB = new DataBase();
 			ResultSet res = DB.executeSQL(query);
-			res.next();
-			if(res.getInt(1) > 0) {
-				return true;
+			if(res.next()){		
+				if(res.getString("username") != null) {
+					if(res.getInt("admin") == 1){
+						DB.disconnectBD();
+						return 2;
+					}
+					DB.disconnectBD();
+					return 1;
+				}
+				else{
+					DB.disconnectBD();
+					return 0;
+				}
 			}
-			else return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		
+		return 0;
 	}
 }

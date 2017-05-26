@@ -18,7 +18,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="imgs/ano_white.png">
 <title>Hackeet</title>
 </head>
-<body onload="goTo('${page}')">
+<body>
 	<div class="container">
 		<header>
 			<div class="left no-select">
@@ -27,10 +27,12 @@
 			</div>
 			<div class="center"></div>
 			<div class="right">
-
+	
 			</div>
 		</header>
-		<div class="mainCont"></div>
+		<div class="mainCont">
+		<jsp:include page="${page}.jsp" />
+		</div>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

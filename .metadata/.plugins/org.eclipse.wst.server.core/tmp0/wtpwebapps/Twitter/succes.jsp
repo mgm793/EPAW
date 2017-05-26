@@ -2,16 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/succes.css">
-	<link rel="shortcut icon" type="image/x-icon" href="imgs/ano_white.png">
-	<title>Users - Hackeet</title>
-</head>
-<body>
-	<div class="container">
+	<div class="succes">
 		<div class="message">
 			<div class="image_succes">
 				<div class="insImage"><img class="anoImage" src="imgs/ano.png"></div>
@@ -39,5 +30,3 @@
 			</div>	
 		</div>
 	</div>
-</body>
-</html>

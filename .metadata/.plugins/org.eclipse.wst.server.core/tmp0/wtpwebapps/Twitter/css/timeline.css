@@ -10,7 +10,6 @@ textarea{
 	margin: 10px;
 	width: calc(50% - 20px);
 	float: left;
-	display: block;
 	overflow: auto;
 }
 
@@ -31,11 +30,13 @@ textarea{
 /* INPUT */
 
 .input{
+	margin: 0 auto;
 	display: flex;
 	border-radius: 10px 10px 0 0;
 	background-color: #424242;
 	padding: 10px 20px;
 	width: calc(100% - 40px);
+	max-width: 600px;
 }
 
 .input img{
@@ -82,7 +83,9 @@ textarea{
 /* TWEETS */
 
 .tweets{
+	margin: 0 auto;
 	width: 100%;
+	max-width: 640px;
 }
 
 .tweet{
