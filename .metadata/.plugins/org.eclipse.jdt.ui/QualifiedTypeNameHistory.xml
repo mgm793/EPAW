@@ -4,7 +4,6 @@
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.lang.reflect.InvocationTargetException"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="models.BeanUser"/>
 <fullyQualifiedTypeName name="database.DataBase"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="com.sun.javafx.collections.MappingChange.Map"/>
@@ -16,4 +15,5 @@
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="models.BeanLogin"/>
+<fullyQualifiedTypeName name="models.BeanUser"/>
 </qualifiedTypeNameHistroy>
