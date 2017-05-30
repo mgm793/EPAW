@@ -24,6 +24,7 @@ public class BeanLogin implements Serializable {
 	}
 	
 	public int getAcces(String user, String pass){
+		if((user != null && user.contains("'")) || (pass != null && pass.contains("'"))) return 0;
 		String query = "SELECT * FROM users WHERE username = '"+ user +"' and passwd = '" + pass + "'";
 		try {
 			DataBase DB = new DataBase();
