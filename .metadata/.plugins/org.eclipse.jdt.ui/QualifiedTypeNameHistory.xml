@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="server.DataBase"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.lang.reflect.InvocationTargetException"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="database.DataBase"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="com.sun.javafx.collections.MappingChange.Map"/>
@@ -16,4 +15,8 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="models.BeanLogin"/>
 <fullyQualifiedTypeName name="models.BeanUser"/>
+<fullyQualifiedTypeName name="models.BeanUserInfo"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 </qualifiedTypeNameHistroy>

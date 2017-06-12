@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import models.BeanTweet;
 
 /**
  * Servlet implementation class HomeController
@@ -32,6 +35,9 @@ public class HomeController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user")!=null){
+			BeanTweet tweet = new BeanTweet();
+			List<BeanTweet> tweets = tweet.getTweets();
+			request.setAttribute("tweets", tweets);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
 			dispatcher.forward(request, response);
 		}

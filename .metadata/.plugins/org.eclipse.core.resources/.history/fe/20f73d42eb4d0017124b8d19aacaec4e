@@ -1,0 +1,56 @@
+package models;
+
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import database.DataBase;
+
+public class BeanUserInfo implements Serializable  {
+
+	private static final long serialVersionUID = 1L;
+
+	private String name;
+	private String username;
+	private String description;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public BeanUserInfo getAllInfo(String name){
+		BeanUserInfo user = new BeanUserInfo();
+		System.out.println(name);
+		String query = "SELECT logName , userName, description FROM users where logName = '"+user+"';";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			ResultSet users = DB.executeSQL(query);
+			users.next();
+			user.setName(users.getString("userName"));
+			user.setUsername(users.getString("logName"));
+			user.setDescription(users.getString("description"));
+			DB.disconnectBD();
+			return user;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return null;
+	}
+}
+	

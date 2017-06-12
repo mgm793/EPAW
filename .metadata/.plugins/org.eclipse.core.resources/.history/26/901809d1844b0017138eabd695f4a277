@@ -1,0 +1,39 @@
+/* BODY */
+.select{
+	width: calc(50% - 100px);
+	height: calc(100% - 175px);
+	padding: 50px;
+	float: left;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.selectBody{
+	width: 90%;
+}
+
+.selectBody h2{
+	font-family: hacked;
+	letter-spacing: 5px;
+	font-size: 5em;
+	margin-bottom: 20px;
+}
+
+.selectBody p{
+	font-size: x-large;
+}
+
+.image{
+	display: flex;
+	align-items: center;
+	width: 50%;
+	height: calc(100vh - 50px);
+	float: right;
+}
+
+.image img{
+	width: 80%;
+	height: auto;
+	max-height: calc(100vh - 50px);
+}
+

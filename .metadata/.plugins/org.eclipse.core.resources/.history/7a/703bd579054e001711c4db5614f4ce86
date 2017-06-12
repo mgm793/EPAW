@@ -1,0 +1,142 @@
+package models;
+
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import database.DataBase;
+
+public class BeanTweet implements Serializable  {
+
+	private static final long serialVersionUID = 1L;
+
+	private int id;
+	private int userId;
+	private String text;
+	private String date;
+	private int retweets;
+	private int comments;
+	private int loves;
+	private int isretweet;
+	private BeanUserInfo userInfo;
+
+	
+	public List<BeanTweet> getTweets(){
+		String query = "SELECT * FROM tweets";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			List<BeanTweet> list = new ArrayList<BeanTweet>();
+			userInfo = new BeanUserInfo(); 
+			ResultSet tweets = DB.executeSQL(query);
+			while (tweets.next()){
+				BeanTweet tweet = new BeanTweet();
+				tweet.setId(tweets.getInt("tweetId"));
+				tweet.setUserId(tweets.getInt("userId"));
+				tweet.setText(tweets.getString("tweetText"));
+				tweet.setRetweets(tweets.getInt("retNum"));
+				tweet.setLoves(tweets.getInt("loveNum"));
+				tweet.setLoves(tweets.getInt("commNum"));
+				tweet.setIsretweet(tweets.getInt("isRetweet"));
+				tweet.setUserInfo(userInfo.getBasicInfo(tweet.getId()));
+				list.add(tweet);
+			}
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return null;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+	public String getText() {
+		return text;
+	}
+
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+	public int getRetweets() {
+		return retweets;
+	}
+
+
+	public void setRetweets(int retweets) {
+		this.retweets = retweets;
+	}
+
+
+	public int getLoves() {
+		return loves;
+	}
+
+
+	public void setLoves(int loves) {
+		this.loves = loves;
+	}
+
+
+	public int getIsretweet() {
+		return isretweet;
+	}
+
+
+	public void setIsretweet(int isretweet) {
+		this.isretweet = isretweet;
+	}
+
+
+	public BeanUserInfo getUserInfo() {
+		return userInfo;
+	}
+
+
+	public void setUserInfo(BeanUserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
+
+	public int getComments() {
+		return comments;
+	}
+
+
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
+}
+	

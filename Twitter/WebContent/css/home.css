@@ -1,11 +1,10 @@
 /* BODY */
 .select{
 	width: calc(50% - 100px);
-	height: calc(100% - 175px);
+	height: calc(100vh - 150px);
 	padding: 50px;
 	float: left;
 	display: flex;
-	padding-top: 125px;
 	justify-content: flex-end;
 }
 
@@ -28,12 +27,13 @@
 	display: flex;
 	align-items: center;
 	width: 50%;
-	height: 100%;
+	height: calc(100vh - 50px);
 	float: right;
 }
 
 .image img{
 	width: 80%;
 	height: auto;
+	max-height: calc(100vh - 50px);
 }
 

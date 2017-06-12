@@ -81,7 +81,7 @@ public class BeanUser implements Serializable  {
 	}
 	public String checkUser(DataBase DB, HttpServletRequest request){
 		String user = request.getParameter("user");
-		String query = "SELECT Count(username) AS c FROM users WHERE username = '" + user  + "';";
+		String query = "SELECT Count(username) AS c FROM users WHERE logName = '" + user  + "';";
 		try {
 			DB = new DataBase();
 			ResultSet res = DB.executeSQL(query);
@@ -128,10 +128,10 @@ public class BeanUser implements Serializable  {
 		String password = user.getPass();
 		String date = user.getBirthD();
 		String team = user.getTeam();
-		String query = "INSERT into users VALUES ('" 
-						+ usern + "','"+ mail + "','" 
+		String query = "INSERT into users (logName, userName, email, pass, birthDate, teamName)  VALUES ('" 
+						+ usern + "','" + usern +"','" + mail + "','" 
 						+ password + "','" + date 
-						+ "','" + team + "',NULL);";
+						+ "','" + team + "');";
 		try {
 			DB = new DataBase();
 			DB.insertSQL(query);
@@ -151,11 +151,11 @@ public class BeanUser implements Serializable  {
 			ResultSet users = DB.executeSQL(query);
 			while (users.next()){
 				BeanUser user = new BeanUser();
-				user.setUser(users.getString("username"));
-				user.setPass(users.getString("passwd"));
+				user.setUser(users.getString("logName"));
+				user.setPass(users.getString("pass"));
 				user.setMail(users.getString("email"));
-				user.setBirthD(users.getString("birthday"));
-				user.setTeam(users.getString("team"));
+				user.setBirthD(users.getString("birthDate"));
+				user.setTeam(users.getString("teamName"));
 				list.add(user);
 			}
 			DB.disconnectBD();

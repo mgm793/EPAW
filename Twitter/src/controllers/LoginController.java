@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.BeanLogin;
+import models.BeanTweet;
 import models.BeanUser;
+import models.BeanUserInfo;
 
 /**
  * Servlet implementation class LoginController
@@ -34,6 +37,7 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		BeanLogin login = new BeanLogin();
+		BeanUserInfo userInfo = new BeanUserInfo();
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
 		String check = request.getParameter("check");
@@ -41,8 +45,11 @@ public class LoginController extends HttpServlet {
 		if(acces != 0){
 			HttpSession session = request.getSession();
 			session.setAttribute("check", check);
-			session.setAttribute("user", user);
+			session.setAttribute("user", userInfo.getAllInfo(user));
 			if(acces == 1){
+				BeanTweet tweet = new BeanTweet();
+				List<BeanTweet> tweets = tweet.getTweets();
+				request.setAttribute("tweets", tweets);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
 				dispatcher.forward(request, response);
 			}

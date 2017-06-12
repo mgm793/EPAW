@@ -1,0 +1,9 @@
+127.0.0.1 - - [03/Jun/2017:23:59:30 +0200] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/ HTTP/1.1" 200 1664
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/css/home.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/css/register.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/css/login.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/css/succes.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/css/app.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/css/timeline.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [03/Jun/2017:23:59:32 +0200] "GET /Twitter/js/register.js HTTP/1.1" 304 -

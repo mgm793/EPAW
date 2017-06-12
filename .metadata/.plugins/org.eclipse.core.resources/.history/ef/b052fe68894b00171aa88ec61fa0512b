@@ -1,0 +1,300 @@
+textarea{
+	resize: none;
+}
+
+.bodyCenter, .bodyLeft, .bodyRight{
+	border-radius: 10px;
+}
+
+.bodyCenter{
+	margin: 10px;
+	width: calc(50% - 20px);
+	float: left;
+	overflow: auto;
+}
+
+.bodyLeft{
+	margin: 10px;
+	width: calc(25% - 20px);
+	float: left;
+	height: calc(100vh - 70px);
+}
+
+.bodyRight{
+	margin: 10px;
+	width: calc(25% - 20px);
+	float: right;
+	height: calc(100vh - 70px);
+}
+
+/* PROFILE SIDE */
+
+.profileSide , .TTSide, .usersSide{
+	display: flex;
+	position:relative;
+	border-radius: 10px;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+.profileInfo, .TTcontent, .usersInfo{
+	width: calc(100% - 40px);
+	padding: 10px;
+	min-height: 100px;
+	max-width:290px;
+}
+
+.profileInfo .head{
+	border-radius: 10px 10px 0 0;
+	width: calc(100%);
+	height: 60px;
+	background-color: #424242;
+}
+
+.profileInfo img{
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	margin-top: -30px;
+	margin-left: 20px;
+	width: 70px;
+	height: auto;
+	float: left;
+}
+
+.profileInfo .info{
+	height: 70px;
+	width: 100%;
+	background-color:white;
+}
+
+.profileInfo .info .name{
+	width: calc(100% - 114px);
+	padding: 10px;
+	float: right;
+}
+.info p.clickable{
+	font-size: small;
+	color: grey;
+}
+
+/* STATS */
+
+.stats{
+	width: calc(100% - 20px);
+	height: 60px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.stats div{
+	width: calc(100% / 3);
+	float:left;
+}
+
+.stats div p{
+	width: 100%;
+	font-size: small;
+	color: grey;
+}
+
+.num{
+	margin-top: 5px;
+	color: black !important;
+	font-weight: 600;
+	font-size: large !important;
+}
+
+/* TT */
+
+.TTcontent, .usersInfo{
+	width: calc(100% - 60px) !important;
+	min-height: 50px !important;
+	max-width:270px;
+	border-radius: 10px;
+	background-color: white;
+	margin:10px;
+}
+
+.TTcontent .title, .usersInfo .title{
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: large;
+	font-weight: 400;
+	color: grey !important;
+	margin-bottom: 10px;
+}
+.TTcontent a .hashtag, .usersInfo a .user{
+	padding: 10px 0;
+	font-weight: 600;
+}
+
+/* MVP USERS INFO */
+
+.usersSide{
+	margin-top: 10px;
+	justify-content: flex-start;
+}
+
+.userBlock{
+	height: 50px;
+}
+
+.usersInfo{
+	margin-top: 0px !important;
+	float: left !important;
+	margin-left: 0px !important;
+	margin-right: 20px;
+}
+
+
+.usersInfo .info{
+	display:flex;
+	align-items: center;
+	margin-left: 10px;
+	float:right;
+	width: calc(100% - 50px);	
+}
+.usersInfo a img{
+	float: left;
+	height: 40px;
+	width: 40px;
+}
+
+	
+/* INPUT */
+
+.input{
+	margin: 0 auto;
+	margin-top: 10px;
+	display: flex;
+	border-radius: 10px 10px 0 0;
+	background-color: #424242;
+	padding: 10px 20px;
+	width: calc(100% - 40px);
+	max-width: 600px;
+}
+
+.input img{
+	margin-top: 1px;
+	margin-right: 10px;
+	height: 40px;
+	width: auto;
+	border-radius: 10px;
+}
+
+.input textarea{
+	border-color: #E0F2F1;
+	border-radius: 10px;
+	font-size: medium;
+	padding: 10px;
+	outline: none;
+	width: 90%;
+	height: calc(40px - 20px);
+	-webkit-transition: height 0.5s;
+	transition: height 1s;
+	font-family: Arial,sans-serif;
+}
+
+.input textarea:focus{
+	border-color: #B2DFDB;
+	height: 60px;
+}
+.input textarea::-webkit-input-placeholder {
+	font-family: Arial,sans-serif;
+}
+
+.input textarea:-ms-input-placeholder {
+	font-family: Arial,sans-serif;
+}
+
+.input textarea:-moz-placeholder {
+	font-family: Arial,sans-serif;
+}
+
+.input textarea::-moz-placeholder {
+	font-family: Arial,sans-serif;
+}
+
+/* TWEETS */
+
+.tweets{
+	margin: 0 auto;
+	width: 100%;
+	max-width: 640px;
+}
+
+.tweet{
+	width: calc(100% - 20px);
+	padding: 10px;
+	background-color: white;
+	display:block;
+	overflow:auto;
+	border-top: 1px solid #e0e0e0;
+}
+
+.tweet:last-child{
+	border-radius: 0 0 10px 10px;
+}
+
+.tweet img{
+	width: 50px;
+	height: 50px;
+	border-radius: 10px;
+	float:left;
+}
+
+.tweet .header, .tweet .bodytweet, .tweet .options{
+	font-size: medium;
+	float: right;
+	width: calc(100% - 60px);
+}
+
+.bold{
+	font-weight: 700;
+}
+.grey{
+	color: grey;
+}
+
+.tweet .bodytweet{
+	margin-top: 5px;
+}
+
+.options{
+	color: grey;
+	margin-top: 20px;
+}
+
+.options i{
+	margin-right: 60px;
+	float: left;
+}
+.options #fav{
+	margin-right: 5px;
+}
+
+.options p{
+	font-family: Arial, sans-serif;
+	height: 10px;
+	line-height: 25px;
+	float: left;
+	font-size: medium;
+}
+
+.options i:hover{
+	cursor: pointer;
+}
+#fav:hover{
+	color: red;
+}
+
+#reply:hover{
+	color: #1B5E20;
+}
+
+#retuit:hover{
+	color: #4CAF50;
+}
+
+

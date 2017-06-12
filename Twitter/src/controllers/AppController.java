@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.BeanTweet;
 import models.BeanUser;
 
 /**
@@ -39,6 +41,9 @@ public class AppController extends HttpServlet {
 			request.setAttribute("page", "Home");
 		}
 		else if (session.getAttribute("user")!=null && session.getAttribute("admin")==null){
+			BeanTweet tweet = new BeanTweet();
+			List<BeanTweet> tweets = tweet.getTweets();
+			request.setAttribute("tweets", tweets);
 			request.setAttribute("page", "Time");
 		}
 		else if(session.getAttribute("admin")!=null){
