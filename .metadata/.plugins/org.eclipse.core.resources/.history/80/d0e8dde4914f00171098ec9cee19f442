@@ -1,0 +1,11 @@
+.fotoGran{
+	width: 60% !important;
+	height: auto;
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.Profilecontent{
+	
+}
