@@ -3,7 +3,15 @@ function submitTweet(){
     		event.preventDefault();
     		if (event.keyCode == 13) {
     			text = $("#inputTweet").val();
-    			text = text.replace(/#([^ ]+)/, '<span class="clickable"><b>#$1</b></span>');
+    			text = text.replace(/#(\S*)/g, '<span class="clickable"><b>#$1</b></span>');
+    			text = text.replace("\'", "\\'");
+    			var regexp = /\B\#\w\w+\b/g
+    			result = text.match(regexp);
+    			if(result != null){
+    				for(var i = 0; i < result.length; ++i){
+    					//add(result[i].substr(1));
+    				}
+    			}
     	    		id =  $("#inputTweet").attr("name");
     	        	$.ajax({
     	        		url: "timeline",
@@ -23,19 +31,7 @@ function submitTweet(){
     	});
 }
 
-function goProfile(user){
-	$.ajax({
-		url: "profile",
-		type: "get",
-		data: "user=" + user ,
-		success: function(response, status, request) {
-			var container = document.querySelector('.mainCont'); 
-			container.innerHTML = response;
-			$.ajaxSetup({ cache: false });
-			document.title = "Hackeet";
-		},
-		error: function(xhr) {
-    			//Do Something to handle error
-    	}
-    });
+function goProfile(name){
+	console.log(name);
+	window.location.replace("http://localhost:8080/Twitter/" + name);
 }

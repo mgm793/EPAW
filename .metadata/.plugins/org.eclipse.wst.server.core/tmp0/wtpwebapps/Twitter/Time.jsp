@@ -14,8 +14,8 @@ pageEncoding="UTF-8"%>
 			<div class="info">
 				<img src="imgs/${sessionScope.user.image}" alt="icon">
 				<div class="name">
-				<p class="clickable" onclick="goProfile('${sessionScope.user.id}')"><b>${sessionScope.user.name}</b></p>
-				<p class="clickable smallLink" onclick="goProfile('${sessionScope.user.id}')">@${sessionScope.user.username}</p>
+				<p class="clickable" onclick="goProfile('${sessionScope.user.name}')"><b>${sessionScope.user.name}</b></p>
+				<p class="clickable smallLink" onclick="goProfile('${sessionScope.user.name}')">@${sessionScope.user.username}</p>
 				</div>
 			</div>
 			<div class="stats">

@@ -2,6 +2,8 @@ package models;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import database.DataBase;
 
@@ -36,6 +38,23 @@ public class BeanUserInfo implements Serializable  {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public int getId(String name){
+		String query = "SELECT userId FROM users where logName='"+ name +"'";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			ResultSet tweets = DB.executeSQL(query);
+			int id = 0;
+			if(tweets.next()){
+				id = tweets.getInt("userId");
+			}
+			DB.disconnectBD();
+			return id;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return 0;
 	}
 	
 	public BeanUserInfo getBasicInfo(int id){

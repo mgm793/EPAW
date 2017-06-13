@@ -5,8 +5,8 @@ pageEncoding="UTF-8"%>
 		<div class="tweet">
 			<img src="imgs/${tweet.userInfo.image}" alt="img">
 			<p class="header">
-				<span class="bold clickable" onclick="goProfile('${tweet.userInfo.id}')">${tweet.userInfo.name}</span>
-				<span class="grey clickable" onclick="goProfile('${tweet.userInfo.id}')">@${tweet.userInfo.username}</span>
+				<span class="bold clickable" onclick="goProfile('${tweet.userInfo.name}')">${tweet.userInfo.name}</span>
+				<span class="grey clickable" onclick="goProfile('${tweet.userInfo.name}')">@${tweet.userInfo.username}</span>
 				<span class="grey"> · </span>
 				<span class="grey">${tweet.date}</span>
 			</p>

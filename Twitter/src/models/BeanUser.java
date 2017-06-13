@@ -168,14 +168,14 @@ public class BeanUser implements Serializable  {
 	}
 	
 	public List<String> getTeams(){
-		String query = "SELECT DISTINCT team FROM users";
+		String query = "SELECT DISTINCT teamName FROM users";
 		DataBase DB;
 		try {
 			DB = new DataBase();
 			List<String> list = new ArrayList<String>();
 			ResultSet teams = DB.executeSQL(query);
 			while (teams.next()){
-				list.add(teams.getString("team"));
+				list.add(teams.getString("teamName"));
 			}
 			return list;
 		}catch (Exception e) {

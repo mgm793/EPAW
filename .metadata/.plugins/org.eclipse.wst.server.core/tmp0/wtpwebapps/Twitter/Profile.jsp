@@ -10,19 +10,18 @@
 			<div class="infoProfile">
 				<img class="fotoGran"src="imgs/${userInfo.image}" alt="icon">
 			</div>
-			<div class="stats">
-			<div><p>TWEETS</p><p class="num">${userInfo.tweets}</p></div>
-			<div><p>FOLLOWING</p><p class="num">${userInfo.following}</p></div>
-			<div><p>FOLLOWERS</p><p class="num">${userInfo.followers}</p></div>
-			</div>
 			<div class="name_descr">
 				<div class="nameInfo">
-					<p><b>${userInfo.name}</b></p>
-					<p class="smallLink">@${userInfo.username}</p>
+					<p><b>${userInfo.name}</b> <span class="smallLink">@${userInfo.username}</span></p>
 				</div>
 				<div class="descr">
 					<p>${userInfo.description}</p>
 				</div>
+			</div>
+			<div class="stats">
+				<div><p>TWEETS</p><p class="num">${userInfo.tweets}</p></div>
+				<div><p>FOLLOWING</p><p class="num">${userInfo.following}</p></div>
+				<div><p>FOLLOWERS</p><p class="num">${userInfo.followers}</p></div>
 			</div>
 		</div>
 	</div>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import models.BeanTweet;
 import models.BeanUser;
+import models.BeanUserInfo;
 
 /**
  * Servlet implementation class AppController
@@ -34,12 +35,26 @@ public class AppController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		HttpSession session = request.getSession();
-		if(request.getRequestURL().toString().split("/").length >= 5){
-			System.out.println(request.getRequestURL().toString().split("/")[4]);
+		if(request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI)!= null && request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString().split("/").length >= 2){
+			String url = request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString().split("/")[2];
+			BeanTweet tweet = new BeanTweet();
+			BeanUserInfo user = new BeanUserInfo();
+			int id = user.getId(url);
+			if(id == 0){
+				request.setAttribute("page", "Home");
+			}
+			else{
+				List<BeanTweet> tweets = tweet.getOwnTweets(Integer.toString(id));
+				BeanUserInfo info = user.getAllInfo(url);
+				request.setAttribute("tweets", tweets);
+				request.setAttribute("userInfo", info);
+				request.setAttribute("page", "Profile");
+			}
 		}
 		
-		if( session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true")){
+		else if( session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true")){
 			session.invalidate();
 			request.setAttribute("page", "Home");
 		}
