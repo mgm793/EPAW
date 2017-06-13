@@ -57,6 +57,30 @@ public class BeanUserInfo implements Serializable  {
 		}	
 		return null;
 	}
+	public BeanUserInfo getAllInfoById(int id) {
+		BeanUserInfo user = new BeanUserInfo();
+		String query = "SELECT userId, logName , userName, description, flwedNum, flwingNum, tweetsNum, profileImg  FROM users where userId = "+id+";";
+		DataBase DB;
+		System.out.println("dsfgkhasdgfhkjasgdfkhja");
+		try {
+			DB = new DataBase();
+			ResultSet users = DB.executeSQL(query);
+			users.next();
+			user.setName(users.getString("userName"));
+			user.setUsername(users.getString("logName"));
+			user.setDescription(users.getString("description"));
+			user.setFollowers(users.getInt("flwedNum"));
+			user.setFollowing(users.getInt("flwingNum"));
+			user.setId(users.getInt("userId"));
+			user.setTweets(users.getInt("tweetsNum"));
+			user.setImage(users.getString("profileImg"));
+			DB.disconnectBD();
+			return user;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return null;
+	}
 	
 	public BeanUserInfo getAllInfo(String name){
 		BeanUserInfo user = new BeanUserInfo();
@@ -110,6 +134,10 @@ public class BeanUserInfo implements Serializable  {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public BeanUserInfo getAllInfoById(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 	

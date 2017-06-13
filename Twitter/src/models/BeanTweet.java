@@ -36,14 +36,41 @@ public class BeanTweet implements Serializable  {
 	public void newTweet(String body, int userId){
 		String query = "insert into tweets (userId, tweetText) values ('"+userId+"','"+ body +"');";
 		DataBase DB;
-		System.out.println(body);
 		try {
 			DB = new DataBase();
 			DB.insertSQL(query);
 			DB.disconnectBD();
 		}catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	public List<BeanTweet> getOwnTweets(String id) {
+		String query = "SELECT * FROM tweets where userId='"+ id +"' order by tweetId desc";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			List<BeanTweet> list = new ArrayList<BeanTweet>();
+			userInfo = new BeanUserInfo(); 
+			ResultSet tweets = DB.executeSQL(query);
+			while (tweets.next()){
+				BeanTweet tweet = new BeanTweet();
+				tweet.setDate(tweet.niceDate(tweets.getDate("createDate")));
+				tweet.setId(tweets.getInt("tweetId"));
+				tweet.setUserId(tweets.getInt("userId"));
+				tweet.setText(tweets.getString("tweetText"));
+				tweet.setRetweets(tweets.getInt("retNum"));
+				tweet.setLoves(tweets.getInt("loveNum"));
+				tweet.setComments(tweets.getInt("commNum"));
+				tweet.setIsretweet(tweets.getInt("isRetweet"));
+				tweet.setUserInfo(userInfo.getBasicInfo(tweet.getUserId()));
+				list.add(tweet);
+			}
+			DB.disconnectBD();
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
 		}	
+		return null;
 	}
 	
 	public List<BeanTweet> getTweets(){
@@ -164,5 +191,7 @@ public class BeanTweet implements Serializable  {
 	public void setComments(int comments) {
 		this.comments = comments;
 	}
+
+
 }
 	

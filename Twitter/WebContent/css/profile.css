@@ -1,12 +1,14 @@
 .fotoGran{
-	width: 80%;
+	width: calc(60% - 4px) !important;
 	height: auto;
 	border: 2px solid grey;
 	border-radius: 10px;
 	background-color: white;
-	margin-left: 10%;
+	margin-left: 20% !important; 
+	float: clear;
 }
 
-.Profilecontent{
-	
+.infoProfile{
+	min-height: 174px;
+	background-color: white;
 }

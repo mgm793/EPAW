@@ -15,8 +15,8 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="models.BeanLogin"/>
 <fullyQualifiedTypeName name="models.BeanUser"/>
-<fullyQualifiedTypeName name="models.BeanUserInfo"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="models.BeanUserInfo"/>
 </qualifiedTypeNameHistroy>

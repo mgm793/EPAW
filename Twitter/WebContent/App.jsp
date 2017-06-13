@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="css/succes.css">
 <link rel="stylesheet" href="css/timeline.css">
 <link rel="stylesheet" href="css/profile.css">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="shortcut icon" type="image/x-icon" href="imgs/ano_white.png">
 <title>Home - Hackeet</title>
 </head>
@@ -35,11 +37,9 @@
 		<jsp:include page="${page}.jsp" />
 		</div>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/register.js"></script>
-	<script src="js/login.js"></script>
 	<script src="js/time.js"></script>
+	<script src="js/login.js"></script>
 	<script src="js/app.js"></script>
 </body>
 </html>

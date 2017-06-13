@@ -74,7 +74,7 @@ textarea{
 	float: right;
 }
 
-.info p.clickable.smallLink{
+.smallLink{
 	font-size: small;
 	color: grey;
 }
@@ -219,6 +219,10 @@ textarea{
 
 /* TWEETS */
 
+.tweetInput{
+	width: 100%;
+}
+
 .tweets{
 	margin: 0 auto;
 	width: 100%;
@@ -247,6 +251,7 @@ textarea{
 
 .tweet .header, .tweet .bodytweet, .tweet .options{
 	font-size: medium;
+	word-break: break-all;
 	float: right;
 	width: calc(100% - 60px);
 }
@@ -299,5 +304,6 @@ textarea{
 #retuit:hover{
 	color: #4CAF50;
 }
+
 
 

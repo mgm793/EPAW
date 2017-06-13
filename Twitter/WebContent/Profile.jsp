@@ -1,8 +1,29 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		submitTweet();
+	});
+</script>
 <div class="bodyLeft">
-	<div class="InfoProfileSide">
-		<div class="Profilecontent">
-			<img class="fotoGran" alt="profile photo" src="imgs/profile.jpg">
-			<p> Mullon <p>
+	<div class="profileSide">
+		<div class ="profileInfo">
+			<div class="head"></div>
+			<div class="infoProfile">
+				<img class="fotoGran"src="imgs/${userInfo.image}" alt="icon">
+			</div>
+			<div class="stats">
+			<div><p>TWEETS</p><p class="num">${userInfo.tweets}</p></div>
+			<div><p>FOLLOWING</p><p class="num">${userInfo.following}</p></div>
+			<div><p>FOLLOWERS</p><p class="num">${userInfo.followers}</p></div>
+			</div>
+			<div class="name_descr">
+				<div class="nameInfo">
+					<p><b>${userInfo.name}</b></p>
+					<p class="smallLink">@${userInfo.username}</p>
+				</div>
+				<div class="descr">
+					<p>${userInfo.description}</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -13,42 +34,30 @@
 		<textarea id="inputTweet" maxlength="140" placeholder="What a hack?"></textarea>
 	</div>
 	<div class="tweets">
-		<div class="tweet">
-			<img src="imgs/logo_user.png" alt="img">
-			<p class="header">
-				<span class="bold">Mullon</span>
-				<span class="grey">@mgm793</span>
-				<span class="grey"> · </span>
-				<span class="grey">3 abr.</span>
-			</p>
-			<p class="bodytweet">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma
-			</p>
-			<div class="options">
-				<i class="material-icons" id="reply">reply</i>
-				<i class="material-icons" id="retuit">repeat</i>
-				<i class="material-icons" id="fav">favorite</i><p id="numFav">5</p>
-			</div>
-		</div>
-		<div class="tweet">
-			<img src="imgs/logo_user.png" alt="img">
-			<p class="header">
-				<span class="bold">Mullon</span>
-				<span class="grey">@mgm793</span>
-				<span class="grey"> · </span>
-				<span class="grey">3 abr.</span>
-			</p>
-			<p class="bodytweet">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma
-			</p>
-			<div class="options">
-				<i class="material-icons" id="reply">reply</i>
-				<i class="material-icons" id="retuit">repeat</i>
-				<i class="material-icons" id="fav">favorite</i><p id="numFav">5</p>
-			</div>
-		</div>
+		<jsp:include page="Tweets.jsp" />
 	</div>
 </div>
 <div class="bodyRight">
-	
+	<div class="usersSide">
+		<div class ="usersInfo">
+			<p class="title">MVP Users</p>
+			<div class="userBlock clickable">		
+					<img alt="user image" src="imgs/logo_user.png">
+					<div class="info">
+						<p class="user">@mgm793</p>
+					</div>
+			</div>	
+			<div class="userBlock clickable">		
+					<img alt="user image" src="imgs/logo_user.png">
+					<div class="info">
+						<p class="user">@mgm793</p>
+					</div>
+			</div>	
+			<div class="userBlock clickable">		
+					<img alt="user image" src="imgs/logo_user.png">
+					<div class="info">
+						<p class="user">@mgm793</p>
+					</div>
+			</div>	
+		</div>
 </div>
