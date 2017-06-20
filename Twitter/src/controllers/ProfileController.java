@@ -38,6 +38,7 @@ public class ProfileController extends HttpServlet {
 		List<BeanTweet> tweets = tweet.getOwnTweets(request.getParameter("user"));
 		BeanUserInfo info = user.getAllInfoById(Integer.parseInt(request.getParameter("user")));
 		request.setAttribute("tweets", tweets);
+		request.setAttribute("MVP", tweet.getMVP());
 		request.setAttribute("userInfo", info);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Profile.jsp");
 		dispatcher.forward(request, response);
@@ -48,7 +49,21 @@ public class ProfileController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		if(request.getParameter("type").equals("follow")){
+			BeanUserInfo user = new BeanUserInfo();
+			user = (BeanUserInfo) request.getSession().getAttribute("user");
+			user.setFollowing(user.getFollowing() + 1);
+			user.follow(request.getParameter("id1"), request.getParameter("id2"));
+		}
+		else if(request.getParameter("type").equals("unfollow")){
+			BeanUserInfo user = new BeanUserInfo();
+			user = (BeanUserInfo) request.getSession().getAttribute("user");
+			user.setFollowing(user.getFollowing() - 1);
+			user.unfollow(request.getParameter("id1"), request.getParameter("id2"));
+		}
+		else{
+			doGet(request, response);
+		}
 	}
 
 }

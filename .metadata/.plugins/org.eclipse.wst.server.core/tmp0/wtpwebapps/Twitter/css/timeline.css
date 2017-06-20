@@ -305,5 +305,25 @@ textarea{
 	color: #4CAF50;
 }
 
+.delete{
+	float: right;
+}
+.delete i{
+	color: lightgrey;
+	font-size: 1.5em;
+}
+.delete i:hover{
+	color: black;
+}
+
+.fav{
+	color: red;
+}
+.ret{
+	color: #4CAF50;
+}
+.rep{
+	color: #1B5E20;
+}
 
 

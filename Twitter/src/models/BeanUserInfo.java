@@ -39,6 +39,10 @@ public class BeanUserInfo implements Serializable  {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public void addTweet(){
+		++this.tweets;
+	}
 	public int getId(String name){
 		String query = "SELECT userId FROM users where logName='"+ name +"'";
 		DataBase DB;
@@ -122,6 +126,32 @@ public class BeanUserInfo implements Serializable  {
 			e.printStackTrace();
 		}	
 		return null;
+	}
+	
+	public void follow(String id1, String id2){
+		String query = "call addFollow("+ id1 + "," + id2 +");";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			DB.insertSQL(query);
+			DB.disconnectBD();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void unfollow(String id1, String id2){
+		String query = "call deleteFollow("+ id1 + "," + id2 +");";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			DB.insertSQL(query);
+			DB.disconnectBD();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 	public int getTweets() {
 		return tweets;

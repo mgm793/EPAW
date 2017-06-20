@@ -40,6 +40,7 @@
 	<script src="js/register.js"></script>
 	<script src="js/time.js"></script>
 	<script src="js/login.js"></script>
+	<script src="js/profile.js"></script>
 	<script src="js/app.js"></script>
 </body>
 </html>

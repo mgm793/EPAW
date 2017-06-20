@@ -1,0 +1,11 @@
+function follow(id1,id2){
+	$(".follow").toggleClass("following");
+	if($(".follow").hasClass("following")){
+		console.log($(".following + p"));
+	}
+//	$.ajax({
+//		type: "POST",
+//		url: "profile",
+//		data: "id1=" + id1 + "&id2=" + id2,
+//	});
+}

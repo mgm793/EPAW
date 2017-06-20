@@ -21,3 +21,29 @@
 	padding: 10px 0;
 	word-break: break-all;
 }
+
+.follow{
+	width: calc(100% - 22px);
+	border-radius: 10px;
+	border: 1px black solid;
+	padding: 10px;
+	margin-bottom: 10px;
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	font-weight: 900; 
+}
+.follow:hover{
+	 color:white;
+	 background-color: #424242;
+}
+
+.follow i{
+	margin-right: 10px;
+	margin-left: -10px;
+	font-size: 1.5em;
+}
+.following{
+	color:white;
+	background-color: #424242;
+}

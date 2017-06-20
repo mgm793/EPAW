@@ -19,20 +19,16 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 			<div class="stats">
-			<div><p>TWEETS</p><p class="num">${sessionScope.user.tweets}</p></div>
-			<div><p>FOLLOWING</p><p class="num">${sessionScope.user.following}</p></div>
-			<div><p>FOLLOWERS</p><p class="num">${sessionScope.user.followers}</p></div>
+				<jsp:include page="Stats.jsp" />
 			</div>
 		</div>
 	</div>
 	<div class="TTSide">
 		<div class ="TTcontent">
 			<p class="title">Trending Topics</p>
-			<p class="hashtag clickable">#Barcelona</p>
-			<p class="hashtag clickable">#Lund</p>
-			<p class="hashtag clickable">#CacatuasPower</p>
-			<p class="hashtag clickable">#Reticulos</p>
-			<p class="hashtag clickable">#DoItForYourLover</p>
+			<c:forEach var="TT" items="${TT}">
+			<p class="hashtag clickable">#${TT}</p>
+			</c:forEach>
 		</div>
 	</div>
 </div>
@@ -52,24 +48,14 @@ pageEncoding="UTF-8"%>
 	<div class="usersSide">
 		<div class ="usersInfo">
 			<p class="title">MVP Users</p>
-			<div class="userBlock clickable">		
+			<c:forEach var="mvp" items="${MVP}">
+			<div class="userBlock clickable" onclick="goProfile('${mvp}')">		
 					<img alt="user image" src="imgs/logo_user.png">
 					<div class="info">
-						<p class="user">@mgm793</p>
+						<p class="user">@${mvp}</p>
 					</div>
-			</div>	
-			<div class="userBlock clickable">		
-					<img alt="user image" src="imgs/logo_user.png">
-					<div class="info">
-						<p class="user">@mgm793</p>
-					</div>
-			</div>	
-			<div class="userBlock clickable">		
-					<img alt="user image" src="imgs/logo_user.png">
-					<div class="info">
-						<p class="user">@mgm793</p>
-					</div>
-			</div>	
+			</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>

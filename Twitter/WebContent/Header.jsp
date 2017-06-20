@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
 </script>
 </c:when>
 <c:otherwise>
-<div class="nameshow clickable" onclick="goProfile('${sessionScope.user.id}')"> ${sessionScope.user.username} </div>
+<div class="nameshow clickable" onclick="goProfile('${sessionScope.user.name}')"> ${sessionScope.user.username} </div>
 <div class="logout">Logout</div>
 <script type="text/javascript">
 	$(document).ready(function() {

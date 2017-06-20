@@ -128,9 +128,9 @@ public class BeanUser implements Serializable  {
 		String password = user.getPass();
 		String date = user.getBirthD();
 		String team = user.getTeam();
-		String query = "INSERT into users (logName, userName, email, pass, birthDate, teamName)  VALUES ('" 
-						+ usern + "','" + usern +"','" + mail + "','" 
-						+ password + "','" + date 
+		String query = "CALL addUser('" 
+						+ usern + "','" + password + "','" 
+						+ mail + "','" + date 
 						+ "','" + team + "');";
 		try {
 			DB = new DataBase();

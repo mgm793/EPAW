@@ -22,6 +22,9 @@ public class BeanTweet implements Serializable  {
 	private int comments;
 	private int loves;
 	private int isretweet;
+	private boolean isLove;
+	private boolean isRetweet;
+	private boolean isComment;
 	private BeanUserInfo userInfo;
 
 	protected String niceDate(Date date){
@@ -33,12 +36,47 @@ public class BeanTweet implements Serializable  {
 		return String.valueOf(dayOfMonth) + " " + month_name;
 	}
 	
-	public void newTweet(String body, int userId){
-		String query = "insert into tweets (userId, tweetText) values ('"+userId+"','"+ body +"');";
+	public void love(String userId, String tweetId){
+		String query = "CALL addLike("+userId+","+tweetId+");";
 		DataBase DB;
 		try {
 			DB = new DataBase();
 			DB.insertSQL(query);
+			DB.disconnectBD();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void unlove(String userId, String tweetId){
+		String query = "CALL deleteLike("+userId+","+tweetId+");";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			DB.insertSQL(query);
+			DB.disconnectBD();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void newTweet(String body, int userId, String hash){
+		String query = "CALL addTweet('"+userId+"','"+ body +"',0);";
+		String query1 = "Select tweetId from tweets where userId =" + userId + " order by tweetId desc";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			DB.insertSQL(query);
+			ResultSet tweet = DB.executeSQL(query1);
+			tweet.next();
+			int id = tweet.getInt("tweetId");
+			if(hash != "null"){
+				String htags[]  = hash.split(",");
+				for(int i = 0; i < htags.length; ++i){
+					System.out.println(htags[i]);
+					String query2 = "CALL addHashtag("+id+",'"+htags[i]+"');";
+					DB.insertSQL(query2);
+				}
+			}
 			DB.disconnectBD();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -76,6 +114,7 @@ public class BeanTweet implements Serializable  {
 	
 	public List<BeanTweet> getTweets(){
 		String query = "SELECT * FROM tweets order by tweetId desc";
+		
 		DataBase DB;
 		try {
 			DB = new DataBase();
@@ -83,6 +122,7 @@ public class BeanTweet implements Serializable  {
 			userInfo = new BeanUserInfo(); 
 			ResultSet tweets = DB.executeSQL(query);
 			while (tweets.next()){
+				DataBase DB1 = new DataBase();
 				BeanTweet tweet = new BeanTweet();
 				tweet.setDate(tweet.niceDate(tweets.getDate("createDate")));
 				tweet.setId(tweets.getInt("tweetId"));
@@ -93,6 +133,19 @@ public class BeanTweet implements Serializable  {
 				tweet.setComments(tweets.getInt("commNum"));
 				tweet.setIsretweet(tweets.getInt("isRetweet"));
 				tweet.setUserInfo(userInfo.getBasicInfo(tweet.getUserId()));
+				String query1 = "SELECT isLike(" + tweets.getInt("userId") + "," + tweets.getInt("tweetId") + ");" ;
+				ResultSet isLike = DB1.executeSQL(query1);
+				isLike.next();
+				tweet.setIsLove(isLike.getBoolean(1));
+//				String query2 = "SELECT isRetweet(" + tweets.getInt("userId") + "," + tweets.getInt("tweetId") + ");" ;
+//				ResultSet isRet = DB1.executeSQL(query2);
+//				isRet.next();
+//				tweet.setRetweet(isLike.getBoolean(1));
+				String query3 = "SELECT isComment(" + tweets.getInt("userId") + "," + tweets.getInt("tweetId") + ");" ;
+				ResultSet isRep = DB1.executeSQL(query3);
+				isRep.next();
+				tweet.setIsComment(isRep.getBoolean(1));
+				DB1.disconnectBD();
 				list.add(tweet);
 			}
 			DB.disconnectBD();
@@ -193,8 +246,69 @@ public class BeanTweet implements Serializable  {
 		this.comments = comments;
 	}
 
-	
+	public List<String> getTT() {
+		String query = "CALL mostUsedHashtags();";
+		DataBase DB;
+		List<String> HashTT = new ArrayList<String>();
+		try {
+			DB = new DataBase();
+			ResultSet TT = DB.executeSQL(query);
+			while(TT.next()){
+				HashTT.add(TT.getString("hashText"));
+			}
+			DB.disconnectBD();
+			return HashTT;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public List<String> getMVP() {
+		String query = "CALL mostFollowedUsers();";
+		DataBase DB;
+		List<String> HashTT = new ArrayList<String>();
+		try {
+			DB = new DataBase();
+			ResultSet TT = DB.executeSQL(query);
+			while(TT.next()){
+				if(!TT.getString("userName").equals("admin"))
+					HashTT.add(TT.getString("userName"));
+			}
+			DB.disconnectBD();
+			return HashTT;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
+	public boolean getIsLove() {
+		return isLove;
+	}
+
+	public void setIsLove(boolean b) {
+		this.isLove = b;
+	}
+
+	public boolean getIsComment() {
+		return isComment;
+	}
+	
+	public void setIsComment(boolean b){
+		this.isComment = b;
+	}
+
+	public void setComment(boolean isComment) {
+		this.isComment = isComment;
+	}
+
+	public boolean isRetweet() {
+		return isRetweet;
+	}
+
+	public void setRetweet(boolean isRetweet) {
+		this.isRetweet = isRetweet;
+	}
 
 }
 	

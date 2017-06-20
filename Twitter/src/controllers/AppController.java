@@ -49,6 +49,7 @@ public class AppController extends HttpServlet {
 				List<BeanTweet> tweets = tweet.getOwnTweets(Integer.toString(id));
 				BeanUserInfo info = user.getAllInfo(url);
 				request.setAttribute("tweets", tweets);
+				request.setAttribute("MVP", tweet.getMVP());
 				request.setAttribute("userInfo", info);
 				request.setAttribute("page", "Profile");
 			}
@@ -62,6 +63,8 @@ public class AppController extends HttpServlet {
 			BeanTweet tweet = new BeanTweet();
 			List<BeanTweet> tweets = tweet.getTweets();
 			request.setAttribute("tweets", tweets);
+			request.setAttribute("TT", tweet.getTT());
+			request.setAttribute("MVP", tweet.getMVP());
 			request.setAttribute("page", "Time");
 		}
 		else if(session.getAttribute("admin")!=null){

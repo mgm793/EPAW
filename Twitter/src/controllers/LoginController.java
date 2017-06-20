@@ -49,6 +49,8 @@ public class LoginController extends HttpServlet {
 			if(acces == 1){
 				BeanTweet tweet = new BeanTweet();
 				List<BeanTweet> tweets = tweet.getTweets();
+				request.setAttribute("TT", tweet.getTT());
+				request.setAttribute("MVP", tweet.getMVP());
 				request.setAttribute("tweets", tweets);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
 				dispatcher.forward(request, response);
