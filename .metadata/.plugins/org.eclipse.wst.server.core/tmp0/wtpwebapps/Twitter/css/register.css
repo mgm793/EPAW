@@ -7,7 +7,7 @@
 	align-items: center;
 }
 
-form:not(.tweetInput){
+form:not(.tweetInput):not(.commentInput){
 	text-align: center;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;

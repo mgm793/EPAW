@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.BeanTweet;
-import models.BeanUser;
 import models.BeanUserInfo;
 
 /**
@@ -47,6 +46,10 @@ public class AppController extends HttpServlet {
 			}
 			else{
 				List<BeanTweet> tweets = tweet.getOwnTweets(Integer.toString(id));
+				if(request.getSession().getAttribute("user") != null) {
+					BeanUserInfo me = (BeanUserInfo) request.getSession().getAttribute("user");
+					request.setAttribute("isFollow", user.isfollow(me.getId(),id));
+				}
 				BeanUserInfo info = user.getAllInfo(url);
 				request.setAttribute("tweets", tweets);
 				request.setAttribute("MVP", tweet.getMVP());
@@ -55,21 +58,30 @@ public class AppController extends HttpServlet {
 			}
 		}
 		
-		else if( session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true")){
-			session.invalidate();
-			request.setAttribute("page", "Home");
+		else if( session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true") && session.getAttribute("admin")==null){
+			session.setMaxInactiveInterval(24*60*60);
+			BeanTweet tweet = new BeanTweet();
+			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
+			List<BeanTweet> tweets = tweet.getTweets(userInfo.getId());
+			request.getSession().setAttribute("user", userInfo.getAllInfo(userInfo.getName()));
+			request.setAttribute("tweets", tweets);
+			request.setAttribute("TT", tweet.getTT());
+			request.setAttribute("MVP", tweet.getMVP());
+			request.setAttribute("page", "Time");
 		}
 		else if (session.getAttribute("user")!=null && session.getAttribute("admin")==null){
 			BeanTweet tweet = new BeanTweet();
-			List<BeanTweet> tweets = tweet.getTweets();
+			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
+			List<BeanTweet> tweets = tweet.getTweets(userInfo.getId());
+			request.getSession().setAttribute("user", userInfo.getAllInfo(userInfo.getName()));
 			request.setAttribute("tweets", tweets);
 			request.setAttribute("TT", tweet.getTT());
 			request.setAttribute("MVP", tweet.getMVP());
 			request.setAttribute("page", "Time");
 		}
 		else if(session.getAttribute("admin")!=null){
-			BeanUser users = new BeanUser();
-			request.setAttribute("users", users.getUsers());
+			BeanUserInfo users = new BeanUserInfo();
+			request.setAttribute("users", users.getAllUsersInfo());
 			request.setAttribute("page", "succes");
 		}
 		else{

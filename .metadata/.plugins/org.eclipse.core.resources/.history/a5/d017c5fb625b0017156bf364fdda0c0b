@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<script>
+		function deleteUser(int id){
+			$(".mainCont").load("admin",{id: id})
+		}
+	</script>
+	<div class="succes">
+		<div class="message">
+			<div class="image_succes">
+				<div class="insImage"><img class="anoImage" src="imgs/ano.png"></div>
+			</div>
+			<div class="messTitle"> USERS </div>
+			<div class="resTable">
+				<table class="usersTable" id="usersTable">
+					<tr>
+						<th> ID </th>
+						<th> Username </th>
+						<th> Name </th>
+						<th> Email </th>
+						<th> Team Name</th>
+						<th> Tweets </th>
+						<th> Delete </th>
+					</tr>
+					<c:forEach items="${users}" var="user">
+					<c:if test="${sessionScope.user.id != user.id}">
+						<tr>
+							<td> ${user.id}  </td> 
+							<td> ${user.username}  </td> 
+							<td> ${user.name} </td>
+							<td> ${user.mail} </td>
+							<td> ${user.team} </td>
+							<td><i class="material-icons clickable">view_list</i></td>
+							<td><i class="material-icons clickable">close</i></td>
+						</tr>
+					</c:if>				
+					</c:forEach>
+				</table>
+			</div>	
+		</div>
+	</div>

@@ -14,3 +14,12 @@ function follow(id1,id2){
 		data: "type="+ type +"&id1=" + id1 + "&id2=" + id2
 	});
 }
+
+function gotoTeam(team){
+	console.log(team);
+	$('.tweets').load("tweets",{"team":team});
+}
+
+function settings(){
+	$('.mainCont').load('setting');
+}

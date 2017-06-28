@@ -1,0 +1,6 @@
+package models;
+
+public class MVP {
+	public String name;
+	public String image;
+}

@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
 			<div class="head">
 			</div>
 			<div class="info">
-				<img src="imgs/${sessionScope.user.image}" alt="icon">
+				<img src="${sessionScope.user.image}" alt="icon">
 				<div class="name">
 				<p class="clickable" onclick="goProfile('${sessionScope.user.name}')"><b>${sessionScope.user.name}</b></p>
 				<p class="clickable smallLink" onclick="goProfile('${sessionScope.user.name}')">@${sessionScope.user.username}</p>
@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
 		<div class ="TTcontent">
 			<p class="title">Trending Topics</p>
 			<c:forEach var="TT" items="${TT}">
-			<p class="hashtag clickable">#${TT}</p>
+			<p class="hashtag clickable" onclick="goToHashtag('${TT}')">#${TT}</p>
 			</c:forEach>
 		</div>
 	</div>
@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 <div class="bodyCenter">
 	<p class="type" style="display: none"> Timeline </p>
 	<div class="input">
-		<img src="imgs/logo_user.png" alt="img">
+		<img src="${sessionScope.user.image}" alt="img">
 		<form class="tweetInput">
 			<textarea id="inputTweet" maxlength="140" name="${sessionScope.user.id}" placeholder="What a hack?"></textarea>
 		</form>
@@ -49,10 +49,10 @@ pageEncoding="UTF-8"%>
 		<div class ="usersInfo">
 			<p class="title">MVP Users</p>
 			<c:forEach var="mvp" items="${MVP}">
-			<div class="userBlock clickable" onclick="goProfile('${mvp}')">		
-					<img alt="user image" src="imgs/logo_user.png">
+			<div class="userBlock clickable" onclick="goProfile('${mvp.name}')">		
+					<img alt="user image" src="${mvp.image}">
 					<div class="info">
-						<p class="user">@${mvp}</p>
+						<p class="user">@${mvp.name}</p>
 					</div>
 			</div>
 			</c:forEach>

@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.BeanTweet;
+import models.BeanUserInfo;
 
 /**
  * Servlet implementation class TimelineController
@@ -35,7 +37,8 @@ public class TimelineController extends HttpServlet {
 		BeanTweet tweet = new BeanTweet();
 		RequestDispatcher dispatcher;
 		if(request.getSession().getAttribute("user") != null){
-			List<BeanTweet> tweets = tweet.getTweets();
+			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
+			List<BeanTweet> tweets = tweet.getTweets(userInfo.getId());
 			request.setAttribute("tweets", tweets);
 			request.setAttribute("TT", tweet.getTT());
 			request.setAttribute("MVP", tweet.getMVP());
@@ -53,11 +56,15 @@ public class TimelineController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if(request.getParameter("postBody") != null){
+			HttpSession session = request.getSession();
+			BeanUserInfo user = (BeanUserInfo) session.getAttribute("user");
+			user.addTweet();
+			session.setAttribute("user", user);
 			String text = (String) request.getParameter("postBody");
 			int id =  Integer.parseInt(request.getParameter("postId"));
 			String hash = request.getParameter("postHash");
 			BeanTweet tweet = new BeanTweet();
-			tweet.newTweet(text, id, hash);
+			tweet.newTweet(text, id, hash, 0);
 		}
 		else if(request.getParameter("type") != null){
 			String userId = request.getParameter("userId");
@@ -69,6 +76,18 @@ public class TimelineController extends HttpServlet {
 			else if(request.getParameter("type").equals("delfav")){
 				tweet.unlove(userId, tweetId);
 			}
+			else if(request.getParameter("type").equals("addret")){
+				tweet.newTweet(request.getParameter("text"), Integer.parseInt(userId), "null",Integer.parseInt(tweetId) );
+			}
+		}
+		else if(request.getParameter("delete") != null){
+			HttpSession session = request.getSession();
+			BeanUserInfo user = (BeanUserInfo) session.getAttribute("user");
+			String ret = request.getParameter("ret");
+			if(ret.equals("0")) user.removeTweet();
+			BeanTweet tweet = new BeanTweet();
+			String tweetId = request.getParameter("tweetId");
+			tweet.delete(tweetId);
 		}
 		doGet(request, response);
 	}

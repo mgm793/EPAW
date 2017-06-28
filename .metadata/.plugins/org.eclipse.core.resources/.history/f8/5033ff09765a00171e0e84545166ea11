@@ -1,0 +1,52 @@
+.fotoGran{
+	width: calc(60% - 4px) !important;
+	height: auto;
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	margin-left: 20% !important; 
+	float: clear;
+}
+
+.infoProfile{
+	min-height: 174px;
+	background-color: white;
+}
+.name_descr{
+	padding:0 10px;
+	background-color: white;
+}
+
+.descr{
+	padding: 10px 0;
+	word-break: break-all;
+}
+
+.follow{
+	width: calc(100% - 22px);
+	border-radius: 10px;
+	border: 1px black solid;
+	padding: 10px;
+	margin-bottom: 10px;
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	font-weight: 900; 
+}
+.follow:hover{
+	 color:white;
+	 background-color: #424242;
+}
+
+.follow i{
+	margin-right: 10px;
+	margin-left: -10px;
+	font-size: 1.5em;
+}
+.following{
+	color:white;
+	background-color: #424242;
+}
+.settings{
+	float: right;
+}

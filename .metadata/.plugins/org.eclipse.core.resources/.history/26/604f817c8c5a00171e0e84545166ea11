@@ -1,0 +1,13 @@
+.descrSet{
+	width: calc(100% - 20px);
+	height: 1.5em;
+	font-size: 1.2em;
+	background-color: transparent;
+	border: 0;
+	border-bottom: 4px solid lightgrey;
+	padding: 10px;
+}
+.descrSet:focus{
+	outline: none;
+	border-bottom: 4px solid grey;
+}

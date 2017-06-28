@@ -12,7 +12,7 @@ a{
 	color: black;
 }
 
-form:not(.tweetInput){
+form:not(.tweetInput):not(.commentInput){
 	position:relative;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;

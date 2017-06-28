@@ -1,0 +1,3 @@
+function submitSettings(form){
+	console.log(form.serialize())
+}

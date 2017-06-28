@@ -1,0 +1,7 @@
+.descrSet{
+	width: calc(100% - 20px);
+	background-color: transparent;
+	border: 0;
+	border-bottom: 4px solid lightgrey;
+	padding: 10px;
+}

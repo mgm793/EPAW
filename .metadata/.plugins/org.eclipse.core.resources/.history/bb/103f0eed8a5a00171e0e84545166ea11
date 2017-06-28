@@ -1,0 +1,4 @@
+function submitSettings(form){
+	event.preventDefault();
+	alert(form.serialize());
+}

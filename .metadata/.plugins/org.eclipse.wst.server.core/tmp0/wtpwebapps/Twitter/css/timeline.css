@@ -157,6 +157,7 @@ textarea{
 	width: calc(100% - 50px);	
 }
 .usersInfo img{
+	border-radius: 10px;
 	float: left;
 	height: 40px;
 	width: 40px;
@@ -326,4 +327,65 @@ textarea{
 	color: #1B5E20;
 }
 
+.retweet{
+	width: 100%;
+	color: grey;
+	font-size: small;
+	margin-bottom: 10px;
+}
+.retweet i{
+	font-size: medium;
+	float: left;
+}
+
+.commentSection{
+	float:right;
+	margin-left: 50px;
+	width: calc(100% - 70px);
+	padding: 10px;
+	display: none;
+}
+.comment{
+	float:left;
+	padding: 10px 0;
+	width: 100%;
+	border-top: 1px solid grey;
+}
+
+.Comtitle{
+	margin-bottom: 10px;
+	float: left;
+}
+
+.comment i{
+	color:lightgrey;
+	float:right;
+}
+.comment i:hover{
+	color: black;
+}
+
+.comment p{
+	clear:both;
+}
+.visible{
+	display: block;
+}
+.commentInput{
+	width: 100%;
+}
+
+.commentInput textarea{
+	width: calc(100% - 20px);
+	border: 0;
+	padding: 10px;
+	border: 2px solid grey;
+	border-radius: 10px;
+	font-size: 1em;
+	outline: none;
+}
+
+.commentInput textarea:focus{
+	border-color: black;
+}
 

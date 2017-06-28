@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.BeanTweet;
+import models.BeanUserInfo;
 
 /**
  * Servlet implementation class TweetsController
@@ -33,7 +34,19 @@ public class TweetsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		BeanTweet tweet = new BeanTweet();
-		List<BeanTweet> tweets = tweet.getTweets();
+		List<BeanTweet> tweets = null;
+		if(request.getParameter("hash") == null && request.getParameter("team") == null) {
+			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
+			tweets = tweet.getTweets(userInfo.getId());
+		}
+		else if(request.getParameter("hash") != null){
+			String hash = request.getParameter("hash");
+			tweets = tweet.getTweetByHash(hash);
+		}
+		else{
+			String team = request.getParameter("team");
+			tweets = tweet.getTweetByTeam(team);
+		}
 		request.setAttribute("tweets", tweets);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Tweets.jsp");
 		dispatcher.forward(request, response);

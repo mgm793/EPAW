@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="TWEET" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="System"/>
+			<item value="info"/>
+			<item value="delete"/>
+			<item value="query1"/>
+			<item value="follow"/>
+			<item value="add"/>
+			<item value="new"/>
 			<item value="tweet"/>
-			<item value="hashtag"/>
-			<item value="&lt;script type=&quot;text/javascript&quot;&gt;&#x0A;$(document).ready(function(){&#x0A;&#x09;console.log(&quot;hiiiii&quot;);&#x0A;&#x09;submitTweet();&#x0A;});&#x0A;&lt;/script&gt;"/>
-			<item value="numFav"/>
-			<item value="num"/>
-			<item value=" a "/>
-			<item value="&lt;a&gt;"/>
-			<item value="a"/>
 		</list>
 		<list key="replacehistory">
 		</list>

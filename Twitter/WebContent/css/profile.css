@@ -47,3 +47,13 @@
 	color:white;
 	background-color: #424242;
 }
+.settings{
+	margin-top: 10px;
+	margin-right: 10px;
+	float: right;
+	color: lightgrey;
+}
+
+.settings:hover{
+	color: white;
+}

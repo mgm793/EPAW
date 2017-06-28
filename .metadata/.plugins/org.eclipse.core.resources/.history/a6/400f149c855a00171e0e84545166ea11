@@ -1,0 +1,3 @@
+function submitSettings(form){
+	alert(form.serialize())
+}

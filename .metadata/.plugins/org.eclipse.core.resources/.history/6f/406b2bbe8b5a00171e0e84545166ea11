@@ -1,0 +1,5 @@
+.descrSet{
+	width: 100%;
+	background-color: transparent;
+	border: 0;
+}

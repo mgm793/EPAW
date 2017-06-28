@@ -1,9 +1,0 @@
-function follow(id1,id2){
-	$.ajax({
-		  type: "POST",
-		  url: "",
-		  data: data,
-		  success: success,
-		  dataType: dataType
-		});
-}

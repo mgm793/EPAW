@@ -1,8 +1,0 @@
-function follow(id1,id2){
-	$(".follow").toggleClass("following");
-//	$.ajax({
-//		type: "POST",
-//		url: "profile",
-//		data: "id1=" + id1 + "&id2=" + id2,
-//	});
-}

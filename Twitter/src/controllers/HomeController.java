@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.BeanTweet;
+import models.BeanUserInfo;
 
 /**
  * Servlet implementation class HomeController
@@ -36,7 +37,8 @@ public class HomeController extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user")!=null){
 			BeanTweet tweet = new BeanTweet();
-			List<BeanTweet> tweets = tweet.getTweets();
+			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
+			List<BeanTweet> tweets = tweet.getTweets(userInfo.getId());
 			request.setAttribute("tweets", tweets);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
 			dispatcher.forward(request, response);

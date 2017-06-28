@@ -1,0 +1,5 @@
+function submitSettings(form){
+	event.preventDefault();
+	console.log($(form).serialize());
+	$(".mainCont").load("settings",$(form).serialize());
+}

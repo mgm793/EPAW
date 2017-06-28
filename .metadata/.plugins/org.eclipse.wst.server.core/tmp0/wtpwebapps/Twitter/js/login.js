@@ -5,8 +5,9 @@ function closeError(){
 
 function submitLogin(form){
 	event.preventDefault();
-	if($( "#c1:checked" ).val() != undefined)
+	if($( "#c1:checked" ).val() != undefined) {
 		var check = "true";
+	}
 	else check = "false";
 	$('.mainCont').load("login",$( form ).serialize() + "&check=" + check, function(){
 		$('.right').load('header');
