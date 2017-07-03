@@ -38,7 +38,7 @@ public class AdminController extends HttpServlet {
 		BeanUserInfo users = new BeanUserInfo();
 		if(request.getParameter("gotoTweets") != null){
 			BeanTweet bean = new BeanTweet();
-			List<BeanTweet> tweets = bean.getOwnTweets(request.getParameter("gotoTweets"));
+			List<BeanTweet> tweets = bean.getOwnTweets(request.getParameter("gotoTweets"),0);
 			request.setAttribute("tweets", tweets);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/succesTweets.jsp");
 			dispatcher.forward(request, response);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.BeanComment;
 import models.BeanTweet;
 import models.BeanUserInfo;
 
@@ -88,6 +89,19 @@ public class TimelineController extends HttpServlet {
 			BeanTweet tweet = new BeanTweet();
 			String tweetId = request.getParameter("tweetId");
 			tweet.delete(tweetId);
+		}
+		else if(request.getParameter("commBody") != null){
+			BeanComment comment = new BeanComment();
+			comment.newComment(request.getParameter("commBody"), Integer.parseInt(request.getParameter("userId")), Integer.parseInt(request.getParameter("tweetId")));
+		}
+		else if(request.getParameter("delComm") != null){
+			BeanComment comment = new BeanComment();
+			comment.delComment(request.getParameter("delComm"), Integer.parseInt(request.getParameter("userId")), Integer.parseInt(request.getParameter("tweetId")));
+		}
+		
+		else if(request.getParameter("delRet") != null){
+			BeanTweet tweet = new BeanTweet();
+			tweet.delRet(request.getParameter("userId"),request.getParameter("delRet"));
 		}
 		doGet(request, response);
 	}

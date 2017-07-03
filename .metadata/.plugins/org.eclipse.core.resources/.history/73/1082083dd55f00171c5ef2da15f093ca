@@ -1,0 +1,103 @@
+package controllers;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import models.BeanTweet;
+import models.BeanUserInfo;
+
+/**
+ * Servlet implementation class AppController
+ */
+@WebServlet("/App")
+public class AppController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AppController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("user") != null);
+		if(request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI)!= null && request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString().split("/").length >= 2){
+			String url = request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString().split("/")[2];
+			BeanTweet tweet = new BeanTweet();
+			BeanUserInfo user = new BeanUserInfo();
+			int id = user.getId(url);
+			if(id == 0){
+				request.setAttribute("page", "Home");
+			}
+			else{
+				BeanUserInfo me = (BeanUserInfo) request.getSession().getAttribute("user");
+				List<BeanTweet> tweets = tweet.getOwnTweets(Integer.toString(id),(me != null ? me.getId() : 0));
+				if(request.getSession().getAttribute("user") != null) {
+					request.setAttribute("isFollow", user.isfollow(me.getId(),id));
+				}
+				BeanUserInfo info = user.getAllInfo(url);
+				request.setAttribute("tweets", tweets);
+				request.setAttribute("MVP", tweet.getMVP());
+				request.setAttribute("userInfo", info);
+				request.setAttribute("page", "Profile");
+			}
+		}
+		
+		else if( session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true") && session.getAttribute("admin")==null){
+			session.setMaxInactiveInterval(24*60*60);
+			BeanTweet tweet = new BeanTweet();
+			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
+			List<BeanTweet> tweets = tweet.getTweets(userInfo.getId());
+			request.getSession().setAttribute("user", userInfo.getAllInfo(userInfo.getName()));
+			request.setAttribute("tweets", tweets);
+			request.setAttribute("TT", tweet.getTT());
+			request.setAttribute("MVP", tweet.getMVP());
+			request.setAttribute("page", "Time");
+		}
+		else if (session.getAttribute("user")!=null && session.getAttribute("admin")==null){
+			BeanTweet tweet = new BeanTweet();
+			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
+			List<BeanTweet> tweets = tweet.getTweets(userInfo.getId());
+			request.getSession().setAttribute("user", userInfo.getAllInfo(userInfo.getName()));
+			request.setAttribute("tweets", tweets);
+			request.setAttribute("TT", tweet.getTT());
+			request.setAttribute("MVP", tweet.getMVP());
+			request.setAttribute("page", "Time");
+		}
+		else if(session.getAttribute("admin")!=null){
+			BeanUserInfo users = new BeanUserInfo();
+			request.setAttribute("users", users.getAllUsersInfo());
+			request.setAttribute("page", "succes");
+		}
+		else{
+			request.setAttribute("page", "Home");
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/App.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

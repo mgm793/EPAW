@@ -16,8 +16,10 @@ function follow(id1,id2){
 }
 
 function gotoTeam(team){
-	console.log(team);
-	$('.tweets').load("tweets",{"team":team});
+	$('.mainCont').load("timeline", function(){
+		window.history.pushState(null, "", "/Twitter/");
+		$('.tweets').load("tweets",{team:team});
+	});
 }
 
 function settings(){

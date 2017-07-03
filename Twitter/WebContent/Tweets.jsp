@@ -19,8 +19,8 @@ pageEncoding="UTF-8"%>
 			</c:if>
 			<img src="${tweet.userInfo.image}" alt="img">
 			<p class="header">
-				<span class="bold clickable" onclick="goProfile('${tweet.userInfo.name}')">${tweet.userInfo.name}</span>
-				<span class="grey clickable" onclick="goProfile('${tweet.userInfo.name}')">@${tweet.userInfo.username}</span>
+				<span class="bold clickable" onclick="goProfile('${tweet.userInfo.username}')">${tweet.userInfo.name}</span>
+				<span class="grey clickable" onclick="goProfile('${tweet.userInfo.username}')">@${tweet.userInfo.username}</span>
 				<span class="grey"> · </span>
 				<span class="grey">${tweet.date}</span>
 				<c:if test = "${sessionScope.user != null && ((tweet.userInfo.id == sessionScope.user.id && tweet.isretweet == 0) || tweet.nameRET == sessionScope.user.username)}">
@@ -38,20 +38,17 @@ pageEncoding="UTF-8"%>
 			</div>
 			</c:if>
 			<div class="commentSection">
+			<c:forEach var="comment" items="${tweet.commList}">
 				<div class="comment">
-					<p class="Comtitle"><b>mgm793</b> says:</p><i class="material-icons">close</i></span>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma</p>
+					<p class="Comtitle"><b>${comment.name}</b> says:</p>
+					<c:if test="${comment.userId == sessionScope.user.id}">
+					<i class="material-icons clickable" onclick="delComment(this,${comment.userId},${tweet.id},'${comment.text}')">close</i>
+					</c:if>
+					<p class="textCom">${comment.text}</p>
 				</div>
-				<div class="comment">
-					<p class="Comtitle"><b>mgm793</b> says:</p><i class="material-icons">close</i></span>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma</p>
-				</div>
-				<div class="comment">
-					<p class="Comtitle"><b>mgm793</b> says:</p><i class="material-icons">close</i></span>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma</p>
-				</div>
-				<form class="commentInput tweet${tweet.id}" name="${sessionScope.user.id}" id="${tweet.id}">
-					<textarea placeholder="Write the comment here..."></textarea>
+			</c:forEach>
+				<form class="commentInput tweet${tweet.id}" name="${sessionScope.user.id}" title ="${sessionScope.user.name}" id="${tweet.id}">
+					<textarea placeholder="Write the comment here..." maxlength="140"></textarea>
 				</form>
 			</div>
 		</div>

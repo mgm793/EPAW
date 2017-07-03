@@ -45,9 +45,9 @@ public class AppController extends HttpServlet {
 				request.setAttribute("page", "Home");
 			}
 			else{
-				List<BeanTweet> tweets = tweet.getOwnTweets(Integer.toString(id));
+				BeanUserInfo me = (BeanUserInfo) request.getSession().getAttribute("user");
+				List<BeanTweet> tweets = tweet.getOwnTweets(Integer.toString(id),(me != null ? me.getId() : 0));
 				if(request.getSession().getAttribute("user") != null) {
-					BeanUserInfo me = (BeanUserInfo) request.getSession().getAttribute("user");
 					request.setAttribute("isFollow", user.isfollow(me.getId(),id));
 				}
 				BeanUserInfo info = user.getAllInfo(url);
@@ -57,8 +57,7 @@ public class AppController extends HttpServlet {
 				request.setAttribute("page", "Profile");
 			}
 		}
-		
-		else if( session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true") && session.getAttribute("admin")==null){
+		else if(session.getAttribute("user")!=null && session.getAttribute("check") != null && !session.getAttribute("check").toString().equalsIgnoreCase("true") && session.getAttribute("admin")==null){
 			session.setMaxInactiveInterval(24*60*60);
 			BeanTweet tweet = new BeanTweet();
 			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");

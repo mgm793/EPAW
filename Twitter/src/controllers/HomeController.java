@@ -39,7 +39,10 @@ public class HomeController extends HttpServlet {
 			BeanTweet tweet = new BeanTweet();
 			BeanUserInfo userInfo = (BeanUserInfo) request.getSession().getAttribute("user");
 			List<BeanTweet> tweets = tweet.getTweets(userInfo.getId());
+			request.getSession().setAttribute("user", userInfo.getAllInfo(userInfo.getName()));
 			request.setAttribute("tweets", tweets);
+			request.setAttribute("TT", tweet.getTT());
+			request.setAttribute("MVP", tweet.getMVP());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Time.jsp");
 			dispatcher.forward(request, response);
 		}

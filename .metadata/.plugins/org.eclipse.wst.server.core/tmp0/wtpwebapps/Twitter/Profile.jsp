@@ -46,12 +46,10 @@ pageEncoding="UTF-8"%>
 </div>
 <div class="bodyCenter">
 	<p class="type" style="display: none"> Timeline </p>
-	<c:if test="${sessionScope.user != null}">
 	<div class="input">
 		<img src="${userInfo.image}" alt="img">
 		<textarea id="inputTweet" maxlength="140" <c:if test="${sessionScope.user.id != userInfo.id}">style="background-color: lightgrey;"</c:if>name="${userInfo.id}" placeholder="What a hack?" <c:if test="${sessionScope.user.id != userInfo.id}">disabled</c:if>></textarea>
 	</div>
-	</c:if>
 	<div class="tweets">
 		<jsp:include page="Tweets.jsp" />
 	</div>

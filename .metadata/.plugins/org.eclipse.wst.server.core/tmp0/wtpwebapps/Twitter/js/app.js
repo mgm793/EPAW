@@ -16,7 +16,7 @@ function goTo(str){
 
 function checkClick(){
 	document.querySelector('.left').onclick = function(){
-		window.location.replace("http://localhost:8080/Twitter/");
+		window.history.pushState(null, "", "/Twitter/");
 		goTo("home");	
 	}
 }

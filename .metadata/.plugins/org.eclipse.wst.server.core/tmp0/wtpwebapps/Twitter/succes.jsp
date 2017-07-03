@@ -27,7 +27,7 @@
 						<th> Delete </th>
 					</tr>
 					<c:forEach items="${users}" var="user">
-					<c:if test="${sessionScope.userInfo.id != user.id}">
+					<c:if test="${'admin' != user.username}">
 						<tr>
 							<td> ${user.id}  </td> 
 							<td> ${user.username}  </td> 

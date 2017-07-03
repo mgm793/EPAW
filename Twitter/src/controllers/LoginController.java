@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import models.BeanLogin;
 import models.BeanTweet;
-import models.BeanUser;
 import models.BeanUserInfo;
 
 /**
@@ -57,9 +56,9 @@ public class LoginController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			else{
-				BeanUser users = new BeanUser();
+				BeanUserInfo users = new BeanUserInfo();
 				session.setAttribute("admin", "1");
-				request.setAttribute("users", users.getUsers());
+				request.setAttribute("users", users.getAllUsersInfo());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/succes.jsp");
 				dispatcher.forward(request, response);
 			}

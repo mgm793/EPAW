@@ -81,6 +81,7 @@ function clickOption(type,userId, tweetId){
 	}
 	else if($("[name='"+ type + tweetId + "'] + p")[0].innerHTML != 0 && type!="rep"){
 		$("[name='"+ type + tweetId + "'] + p")[0].innerHTML = (parseInt($("[name='"+ type +tweetId + "'] + p")[0].innerHTML) - 1);
+		if(type == "ret") delRet(tweetId, userId);
 		add_del = "del";
 	}
 	d = {type: add_del+type, userId: userId ,tweetId : tweetId};
@@ -104,40 +105,84 @@ function clickOption(type,userId, tweetId){
 	});
 }
 
+function delRet(tweetId, userId){
+	$.ajax({
+		url: "timeline",
+		type: "post",
+		data: {delRet: tweetId, userId: userId},
+		success: function(response, status, request) {
+			$('.tweets').load("tweets");
+		},
+		error: function(xhr) {
+    		console.log(xhr)
+		}
+    	});
+}
+
 function showComment(div){
-	$(div).parent().next().toggleClass("visible");
+	$(div).parent().next().slideToggle();
 }
 
 function goProfile(name){
 	window.location.replace("http://localhost:8080/Twitter/" + name);
 }
 
+function delComment(that,userId,tweetId,text){
+	$.ajax({
+		url: "timeline",
+		type: "post",
+		data: {delComm: text, userId: userId, tweetId: tweetId} ,
+		success: function(response, status, request) {
+			$(that).parent().remove();
+			delete_comm(tweetId);
+		},
+		error: function(xhr) {
+    			console.log(xhr)
+		}
+	});
+}
+function delete_comm(tweetId){
+	if($("[name='rep"+ tweetId + "'] + p")[0].innerHTML != 0){
+		$("[name='rep"+tweetId + "'] + p")[0].innerHTML = (parseInt($("[name='rep"+tweetId + "'] + p")[0].innerHTML) - 1);
+	}
+	if($("[name='rep"+ tweetId + "'] + p")[0].innerHTML == 0){
+		$("[name='rep"+ tweetId + "']").removeClass("rep");
+	}
+}
+
 function submitComment(){
 	$(".commentInput").keyup(function(event) {
-		tweetId = this[0].id;
     		event.preventDefault();
     		if (event.keyCode == 13) {
-    			text = $(".commentInput").val();
+    			tweetId = this.id;
+    			userId = this.name;
+    			userName = this.title;
+    			text = $(".commentInput.tweet" + tweetId + " textarea")[0].value;
     			text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     			text = text.replace(/#(\S*)/g, '<span class="clickable" onclick="goToHashtag(&#39;$1&#39;)"><b>#$1</b></span>');
     			text = text.replace(/@(\S*)/g, '<span class="clickable" onclick="goProfile(&#39;$1&#39;)"><b>@$1</b></span>');
     			text = text.replace("\'", "\\'");
     			text = text.replace(/^\s+|\s+$/g, '');
-    	    		//id =  $("#inputTweet").attr("name");
-//    	    		if(text != ""){
-//	    	        	$.ajax({
-//	    	        		url: "timeline",
-//	    	        		type: "post",
-//	    	        		data: {postBody: text, postId: id , postHash: hashtags} ,
-//	    	        		success: function(response, status, request) {
-//	    	        			clickOption('rep',$(".commentInput")[0].name,$(".commentInput")[0].id);	
-//	    	        			$('.tweets').load("tweets");
-//	    	        		},
-//	    	        		error: function(xhr) {
-//	    	            		console.log(xhr)
-//	    	            	}
-//	    	        });
-//    	    		}
+    	    		if(text != ""){
+	    	        	$.ajax({
+	    	        		url: "timeline",
+	    	        		type: "post",
+	    	        		data: {commBody: text, userId: userId, tweetId: tweetId} ,
+	    	        		success: function(response, status, request) {
+	    	        			clickOption('rep',userId,tweetId);
+	    	        			comment = "<div class='comment'>"+
+					"<p class='Comtitle'><b>"+userName+"</b> says:</p>" +
+					"<i class='material-icons clickable' onclick='delComment(this,"+userId+","+tweetId+",\""+text+"\")'>close</i>"+
+					"<p class='textCom'>"+text+"</p>"+
+					"</div>";
+	    	        			$(".commentInput.tweet" + tweetId).parent().prepend(comment);
+	    	        			$(".commentInput.tweet" + tweetId +" textarea")[0].value = "";
+	    	        		},
+	    	        		error: function(xhr) {
+	    	            		console.log(xhr)
+	    	            	}
+	    	        });
+    	    		}
     	    	}
     	});
 }

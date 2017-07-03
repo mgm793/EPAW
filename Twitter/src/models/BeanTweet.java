@@ -25,6 +25,7 @@ public class BeanTweet implements Serializable  {
 	private boolean isLove;
 	private boolean isRet;
 	private boolean isComment;
+	private List<BeanComment> commList;
 	private String nameRET;
 	private BeanUserInfo userInfo;
 
@@ -83,7 +84,7 @@ public class BeanTweet implements Serializable  {
 		}
 	}
 	
-	public List<BeanTweet> getOwnTweets(String id) {
+	public List<BeanTweet> getOwnTweets(String id, int id2) {
 		String query = "SELECT * FROM tweets where userId='"+ id +"' order by tweetId desc";
 		DataBase DB;
 		try {
@@ -108,12 +109,16 @@ public class BeanTweet implements Serializable  {
 					tweet.setUserInfo(userInfo.getBasicInfo(tweet.getUserIdofTweet(tweet.getIsretweet())));
 					tweet.setNameRET(userInfo.getNameById(tweet.getUserId()));
 				}
-				String query1 = "call getTweetReactions(" + id + "," + tweets.getInt("tweetId") + ");" ;
-				ResultSet isLike = DB1.executeSQL(query1);
-				isLike.next();
-				tweet.setIsLove(isLike.getBoolean("isLike"));
-				tweet.setIsRet(isLike.getBoolean("isRetweeted"));
-				tweet.setIsComment(isLike.getBoolean("isComment"));
+				BeanComment comments = new BeanComment();
+				tweet.setCommList(comments.getComments(tweets.getInt("tweetId")));
+				if(id2 != 0){
+					String query1 = "call getTweetReactions(" + id2 + "," + tweets.getInt("tweetId") + ");" ;
+					ResultSet isLike = DB1.executeSQL(query1);
+					isLike.next();
+					tweet.setIsLove(isLike.getBoolean("isLike"));
+					tweet.setIsRet(isLike.getBoolean("isRetweeted"));
+					tweet.setIsComment(isLike.getBoolean("isComment"));
+				}
 				list.add(tweet);
 			}
 			DB.disconnectBD();
@@ -148,6 +153,8 @@ public class BeanTweet implements Serializable  {
 					tweet.setUserInfo(userInfo.getBasicInfo(tweet.getUserIdofTweet(tweet.getIsretweet())));
 					tweet.setNameRET(userInfo.getNameById(tweet.getUserId()));
 				}
+				BeanComment comments = new BeanComment();
+				tweet.setCommList(comments.getComments(tweets.getInt("tweetId")));
 				String query1 = "call getTweetReactions(" + id + "," + tweets.getInt("tweetId") + ");" ;
 				ResultSet isLike = DB1.executeSQL(query1);
 				isLike.next();
@@ -190,6 +197,8 @@ public class BeanTweet implements Serializable  {
 					tweet.setUserInfo(userInfo.getBasicInfo(tweet.getUserIdofTweet(tweet.getIsretweet())));
 					tweet.setNameRET(userInfo.getNameById(tweet.getUserId()));
 				}
+				BeanComment comments = new BeanComment();
+				tweet.setCommList(comments.getComments(tweets.getInt("tweetId")));
 				String query1 = "call getTweetReactions(" + id + "," + tweets.getInt("tweetId") + ");" ;
 				ResultSet isLike = DB1.executeSQL(query1);
 				isLike.next();
@@ -234,10 +243,12 @@ public class BeanTweet implements Serializable  {
 				}
 				String query1 = "call getTweetReactions(" + id + "," + tweets.getInt("tweetId") + ");" ;
 				ResultSet isLike = DB1.executeSQL(query1);
+				BeanComment comments = new BeanComment();
 				isLike.next();
 				tweet.setIsLove(isLike.getBoolean("isLike"));
 				tweet.setIsRet(isLike.getBoolean("isRetweeted"));
 				tweet.setIsComment(isLike.getBoolean("isComment"));
+				tweet.setCommList(comments.getComments(tweets.getInt("tweetId")));
 				DB1.disconnectBD();
 				list.add(tweet);
 			}
@@ -382,8 +393,8 @@ public class BeanTweet implements Serializable  {
 			ResultSet TT = DB.executeSQL(query);
 			while(TT.next()){
 				MVP user = new MVP();
-				if(!TT.getString("userName").equals("admin")){
-					user.setName(TT.getString("userName"));
+				if(!TT.getString("logName").equals("admin")){
+					user.setName(TT.getString("logName"));
 					user.setImage(TT.getString("profileImg"));
 					HashTT.add(user);
 				}
@@ -443,6 +454,27 @@ public class BeanTweet implements Serializable  {
 
 	public void setNameRET(String nameRET) {
 		this.nameRET = nameRET;
+	}
+
+	public List<BeanComment> getCommList() {
+		return commList;
+	}
+
+	public void setCommList(List<BeanComment> commList) {
+		this.commList = commList;
+	}
+
+	public void delRet(String userId, String tweetId) {
+		String query = "call deleteReTweets("+ userId +"," + tweetId +");";
+		DataBase DB;
+		try {
+			DB = new DataBase();
+			DB.insertSQL(query);
+			DB.disconnectBD();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	
